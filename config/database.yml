@@ -1,0 +1,33 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: bloodless
+  password: 
+
+development:
+  <<: *default
+  database: psql_body_development
+
+test:
+  <<: *default
+  database: psql_body_test
+
+production:
+  adapter: postgresql
+  prepared_statements: false
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+#
+# You can use this database configuration with:
+#
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
+#
+# production:
+#   <<: *default
+#   database: psql_sample_production
+#   username: psql_test
+#   password: <%= ENV['PSQL_TEST_DATABASE_PASSWORD'] %>

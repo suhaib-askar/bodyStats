@@ -4,6 +4,8 @@ ruby '1.9.3'
 gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.17.1'
+
+gem 'devise', '~> 3.2.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -20,8 +22,7 @@ gem 'jquery-textchange-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
+
 gem 'will_paginate', '~> 3.0.7'
 gem 'faker', '1.1.2'
 gem 'bcrypt-ruby', '~> 3.1.5'

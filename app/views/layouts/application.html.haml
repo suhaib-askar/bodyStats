@@ -1,10 +1,12 @@
 !!!
 %html
   %head
-    %title Body Stats
+    %title= full_title yield :title
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = render 'layouts/shim'
-  %body
-    = yield
+  %body{ class: controller.controller_name }
+    %p.notice= notice
+    %p.alert= alert
+    = yield  

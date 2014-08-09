@@ -1,10 +1,64 @@
 Rails.application.routes.draw do
 
+  root 'static_pages#home'
+  #get '/profile' => 'users#profile', as: 'profile'
+
+  # devise_for :users, path: '', path_names: { 
+  #               sign_in: 'login', sign_out: 'logout', sign_up: 'join'
+  #             }
+  
+
+  devise_for :users, skip: [:sessions, :passwords, :registrations]
+  as :user do
+    # session handling
+    get     '/login'  => 'devise/sessions#new',     as: 'new_user_session'
+    post    '/login'  => 'devise/sessions#create',  as: 'user_session'
+    delete  '/logout' => 'devise/sessions#destroy', as: 'destroy_user_session'
+
+    # joining
+    get   '/join'    => 'devise/registrations#new',       as: 'new_user_registration'
+    post  '/join'    => 'devise/registrations#create',    as: 'user_registration'
+    put   '/join'    => 'users/registrations#update',  as: ''
+    # account deletion
+    delete '/join' => 'devise/registrations#destroy', as: ''
+
+    # password reset
+    get   '/reset_password'        => 'devise/passwords#new',    as: 'new_user_password'
+    post  '/reset_password'        => 'devise/passwords#create', as: 'user_password'
+    get   '/password/change'       => 'devise/passwords#edit',   as: 'edit_user_password'
+    put   '/reset_password'        => 'devise/passwords#update', as: ''
+    
+    scope '/settings' do
+      # confirmation
+      # get   '/confirm'        => 'devise/confirmations#show',   as: 'person_confirmation'
+      # post  '/confirm'        => 'devise/confirmations#create'
+      # get   '/confirm/resend' => 'devise/confirmations#new',    as: 'new_user_confirmation'
+
+      # settings & cancellation
+      
+      get '/cancel'  => 'devise/registrations#cancel',  as: 'cancel_user_registration'
+      get '/profile' => 'users/registrations#edit',    as: 'edit_user_registration'
+    end
+  end
+  
+  # devise_for :users, skip: [:sessions, :passwords]
+  # as :user do
+  #   get 'sign_in' => 'devise/sessions#new', :as => :new_user_session
+  #   post 'sign_in' => 'devise/sessions#create', :as => :user_session
+  #   delete 'sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session
+    
+  #   post 'password' => 'devise/passwords#create', :as => :user_password
+  #   get 'forgot_password' => 'devise/passwords#new', :as => :new_user_password
+  #   get 'edit_password' => 'devise/passwords#edit', :as => :edit_user_password
+
+  # end
+  
+  
   # get 'microposts/create'
 
   # get 'microposts/destroy'
 
-  # root 'static_pages#home'
+  
   # resources :sessions, only: [ :new, :create, :destroy ]
   
   # resources :users do

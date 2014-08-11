@@ -6,6 +6,8 @@ gem 'rails', '4.1.1'
 gem 'pg', '~> 0.17.1'
 
 gem 'devise', '~> 3.2.4'
+# gem 'devise-i18n', '~> 0.10.4'
+gem 'cancan', '~> 1.6.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

@@ -7,6 +7,10 @@
     = csrf_meta_tags
     = render 'layouts/shim'
   %body{ class: controller.controller_name }
+    = form_tag  set_locale_path, class: 'locale' do
+      = select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()'
+      = submit_tag 'submit' 
+      = javascript_tag "$('.locale input').hide()" 
     %p.notice= notice
     %p.alert= alert
     = yield  

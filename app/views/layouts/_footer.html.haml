@@ -1,0 +1,21 @@
+.container
+  .site-footer
+    %ul.site-footer-links.right
+      %li= link_to 'Status', '#'
+      %li= link_to 'API', '#'
+      %li= link_to 'Training', '#'
+      %li= link_to 'Shop', '#'
+      %li= link_to 'Blog', '#'
+      %li= link_to 'About', about_path
+      = form_tag  set_locale_path, class: 'locale' do
+        = select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()'
+        = submit_tag 'submit' 
+        = javascript_tag "$('.locale input').hide()" 
+    %ul.site-footer-links
+      %li
+        © 2014
+        %span Ocibaka
+      %li= link_to 'Terms', '#'
+      %li= link_to 'Privacy', '#'
+      %li= link_to 'Security', '#'
+      %li= link_to 'Contact', '#'

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   #scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     root 'static_pages#home'
     
+    get '/about' => 'static_pages#about', as: 'about'
     as :user do
       # session handling
       get     '/login'  => 'devise/sessions#new',     as: 'new_user_session'
@@ -22,25 +23,25 @@ Rails.application.routes.draw do
 
       # joining
       get   '/join'    => 'devise/registrations#new',       as: 'new_user_registration'
-      post  '/join'    => 'devise/registrations#create',    as: 'user_registration'
+      post  '/join'    => 'users/registrations#create',    as: 'user_registration'
       put   '/join'    => 'users/registrations#update',  as: ''
       # account deletion
       delete '/join' => 'devise/registrations#destroy', as: ''
 
       # password reset
       get   '/reset_password'        => 'devise/passwords#new',    as: 'new_user_password'
-      post  '/reset_password'        => 'devise/passwords#create', as: 'user_password'
+      post  '/reset_password'        => 'users/passwords#create', as: 'user_password'
       get   '/password/change'       => 'devise/passwords#edit',   as: 'edit_user_password'
       put   '/reset_password'        => 'devise/passwords#update', as: ''
       
       scope '/settings' do
+        resources :criteria, except: [ :show, :edit, :new ]
         # confirmation
         # get   '/confirm'        => 'devise/confirmations#show',   as: 'person_confirmation'
         # post  '/confirm'        => 'devise/confirmations#create'
         # get   '/confirm/resend' => 'devise/confirmations#new',    as: 'new_user_confirmation'
 
         # settings & cancellation
-        
         get '/cancel'  => 'devise/registrations#cancel',  as: 'cancel_user_registration'
         get '/profile' => 'users/registrations#edit',    as: 'edit_user_registration'
       end

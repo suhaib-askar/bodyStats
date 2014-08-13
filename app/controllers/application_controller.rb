@@ -4,18 +4,21 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   
-  # Devise
-  # def after_sign_in_path_for(resource)
-  #   #user_url_path
-  # end
+  private
 
-  # def after_sign_out_path_for(resource_or_scope)
-  #   #request.referrer
-  # end
+    # Devise
+    def after_sign_in_path_for(resource)
+      #user_url_path
+      session["user_return_to"] || root_path
+    end
+    
+    # def after_sign_out_path_for(resource_or_scope)
+    #   #request.referrer
+    # end
   protected
 
     def set_i18n_locale_from_params
-      locale = params[:locale]
+      locale = params[:locale] || []
       if locale.length == 2 
         if I18n.available_locales.map(&:to_s).include? (locale)
           I18n.locale = session[:locale] = locale

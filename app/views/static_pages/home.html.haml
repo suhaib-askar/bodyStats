@@ -1,11 +1,31 @@
-- if user_signed_in?
-  %span Здравствуйте, #{current_user.email}
-  = link_to 'Выйти', destroy_user_session_path, method: :delete
-- else 
-  = link_to 'Войти', new_user_session_path 
-  или 
-  = link_to 'Зарегистрироваться', new_user_registration_path
+- if signed_in?
+  = render 'signed'
+- else
+  = render 'no_signed'
+    
 
-%div
-  %h1 Welcome to the Body-Stats
-  %h2 This is the home page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ - if user_signed_in?
+/   %span Здравствуйте, #{current_user.email}
+/   = link_to 'Выйти', destroy_user_session_path, method: :delete
+/ - else 
+/   = link_to 'Войти', new_user_session_path 
+/   или 
+/   = link_to 'Зарегистрироваться', new_user_registration_path
+
+/ %div
+/   %h1 Welcome to the Body-Stats
+/   %h2 This is the home page.

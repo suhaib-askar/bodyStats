@@ -1,0 +1,21 @@
+#site-container.context-loader-container{"data-pjax-container" => ""}
+  .marketing-section.marketing-section-signup
+    .container
+      = form_for(:user, url: user_registration_path, html: { class: "form-signup-home" }) do |f|
+        %dl.form
+          %dd
+            = f.text_field :name, autofocus: true, placeholder: 'Your name'
+        %dl.form
+          %dd
+            = f.email_field :email, placeholder: 'Your email'
+        %dl.form
+          %dd
+            = f.password_field :password, autocomplete: "off", placeholder: 'Create a password'
+        %dl.form
+          %dd
+            = f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Confirm password'
+        = f.button "Sign up", class: 'button primary button-block'
+      %h1.heading Watch the performance of your body.
+
+/ .covervid-wrapper
+/   = video_tag(['clouds.webm'], autoplay: true, loop: true, class: "covervid-video")

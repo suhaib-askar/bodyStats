@@ -1,17 +1,40 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "off"
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  %div= f.submit "Sign up"
-= render "devise/shared/links"
+.setup-main
+  .setup-header
+    %h1 Join Ociland
+    %p.lead The best way - ociway. 
+  = simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f|
+    %h2 Create your personal account
+    .fieldgroup
+      - unless resource.errors.empty?
+        .error
+          %p= "There were problems creating your account."
+        %br
+      .fields
+        = f.input :name, label: "Your Name", required: false, autofocus: true, placeholder: "ocibaka"
+        %br
+        = f.input :email, label: 'Email Address', placeholder: "example@email.com"
+        %br
+        = f.input :password, label: 'Password', placeholder: "Minimum is 8 characters"
+        %br
+        = f.input :password_confirmation, label: 'Confirm your password'
+        %br
+        = f.button :submit, "Create an account", class: "button primary"
+
+
+/ %h2 Sign up
+/ = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+/   = devise_error_messages!
+/   %div
+/     = f.label :email
+/     %br/
+/     = f.email_field :email, autofocus: true
+/   %div
+/     = f.label :password
+/     %br/
+/     = f.password_field :password, autocomplete: "off"
+/   %div
+/     = f.label :password_confirmation
+/     %br/
+/     = f.password_field :password_confirmation, autocomplete: "off"
+/   %div= f.submit "Sign up"
+/ = render "devise/shared/links"

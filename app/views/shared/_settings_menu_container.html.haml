@@ -1,0 +1,9 @@
+.settings-nav.menu-container
+  %ul.menu.accordion
+    %li.section
+      = link_to edit_user_registration_path, class: "section-head" do
+        = gravatar_for(current_user, size: 20)
+        = current_user.name || current_user.email
+      %ul.expanded.section-nav
+        %li= link_to "Profile", edit_user_registration_path, class: "selected", data: { "selected-links" => edit_user_registration_path }
+        %li= link_to "Criteria", criteria_path, data: { "selected-links" => criteria_path }

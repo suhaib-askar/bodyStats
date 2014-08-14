@@ -4,11 +4,16 @@
     .settings-content
       .boxed-group
         %h3 Create your track items
-        .boxed-group-inner.boxed-profile.clearfix
+        .boxed-group-inner
+          = simple_form_for(@track_item) do |f|
+            %dl.form.track
+              %dd= f.input :name, label: false, placeholder: "Item name", autofocus: true, required: false, input_html: { class: "track-name" }
+            %dl.form.track
+              %dd= f.association :unit, label_method: :full_en,  prompt: "Unit",  value_method: :id, label: false, input_html: { class: "form-control track-combo" }
+            %dl.track
+              = f.button :submit, "Add", class: "button primary"
       .boxed-group
         %h3 Your items
         .boxed-group-inner
           %br
-          %p Once you delete your account, there is no going back. Please be certain.
-          %p
-            = button_to "Delete your account", '#', class: 'button'
+          %h2 Tracking list is empty.

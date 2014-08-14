@@ -1,0 +1,14 @@
+.wrap-cont
+  .container
+    = render "shared/settings_menu_container"
+    .settings-content
+      .boxed-group
+        %h3 Create your track items
+        .boxed-group-inner.boxed-profile.clearfix
+      .boxed-group
+        %h3 Your items
+        .boxed-group-inner
+          %br
+          %p Once you delete your account, there is no going back. Please be certain.
+          %p
+            = button_to "Delete your account", '#', class: 'button'

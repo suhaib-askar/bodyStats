@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
         if I18n.available_locales.map(&:to_s).include? (locale)
           I18n.locale = session[:locale] = locale
         else
-          flash.now[:notice] = "#{locale} translation not available"
+          flash.now[:error] = "#{locale} translation not available"
           logger.error flash.now[:notice]
         end
       else

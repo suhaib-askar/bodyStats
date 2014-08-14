@@ -12,7 +12,7 @@ module ApplicationHelper
       flash.each do |key, value|
         message = content_tag :div, class: "alert alert-#{key}" do
           concat(content_tag :a, "&times".html_safe, href: "#", class: "close")
-          concat(content_tag :center, (content_tag :strong, value.is_a?(Array) ? value.join : value ), '')
+          concat(content_tag :center, (content_tag :strong, value.is_a?(Array) ? value.join(", ") : value ), '')
         end
       end
       message

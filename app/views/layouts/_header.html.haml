@@ -10,7 +10,7 @@
             %li
               = link_to edit_user_registration_path, class: 'name' do
                 = gravatar_for current_user, size: 20
-                = current_user.name 
+                = current_user.name || current_user.email
             = link_to 'Logout', destroy_user_session_path, method: :delete, class: "button"
         - else
           = link_to 'Sign up', new_user_registration_path, class: "button primary"

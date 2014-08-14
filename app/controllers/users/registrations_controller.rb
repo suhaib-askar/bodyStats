@@ -60,11 +60,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     def after_sign_up_path_for(resource)
-      criteria_path
+      new_project_path
     end
 
     def after_inactive_sign_up_path_for(resource)
-      criteria_path
+      new_project_path
     end
 
     def sign_up_params

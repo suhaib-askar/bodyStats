@@ -1134,3 +1134,12 @@ dl.form input[type="text"]:focus, dl.form .focused .drag-and-drop, .focused dl.f
     left: 80px;
   }
 }
+dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search-page-label, #adv_code_search dl.form > dd .long.search-page-label, dl.form > dd input.long[type="password"], dl.form > dd input.long[type="email"] {
+  width: 100%;
+}
+
+.new-repo-container {
+  margin: 0 auto;
+  padding-top: 20px;
+  width: 600px;
+}

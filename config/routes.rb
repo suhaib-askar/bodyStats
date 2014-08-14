@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   scope '(:locale)' do
   #scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     root 'static_pages#home'
+    #get '/:project_name' => 'projects#show', constraints: { id: /\d.+/ }, as: 'proj_id'
     
+    
+    #get '/:id' => 'projects#show', id: /login\/[^\/]+/
     get '/about' => 'static_pages#about', as: 'about'
     as :user do
       # session handling
@@ -35,7 +38,7 @@ Rails.application.routes.draw do
       put   '/reset_password'        => 'devise/passwords#update', as: ''
       
       scope '/settings' do
-        resources :criteria, except: [ :show, :edit, :new ]
+        resources :track_items, except: [ :show, :edit, :new ]
         # confirmation
         # get   '/confirm'        => 'devise/confirmations#show',   as: 'person_confirmation'
         # post  '/confirm'        => 'devise/confirmations#create'
@@ -47,6 +50,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :projects, path: '', except: [ :index, :create ] do
+      get 'all' => 'projects#index', as:'', on: :collection
+      post 'all' => 'projects#create', on: :collection
+    end
   end
 
   post 'set_locale' => 'sessions#set_locale', as: 'set_locale'

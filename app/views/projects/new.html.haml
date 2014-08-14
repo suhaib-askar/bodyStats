@@ -1,0 +1,13 @@
+.new-repo-container
+  = simple_form_for(@project) do |f|
+    %h1 Create Your Own Project
+    .with-permission-fields
+      %p 
+        Great project names are short and memorable. Need inspiration? How about
+        %strong otec
+      %dl.form
+        %dd= f.input :name, label: "Project Name", input_html: { class: "long" }, required: false, autofocus: true, placeholder: "Name of the monitored project"
+      %dl.form
+        %dd= f.input :description, label: "Description", required: false, autofocus: true, placeholder: "Optional", input_html: { class: "long" }
+      %hr
+      = f.button :submit, "Create project", class: "button primary first-in-line"

@@ -1,4 +1,6 @@
-class CriteriaController < ApplicationController
+class TrackItemsController < ApplicationController
+
+  before_action :authenticate_user!
 
   def index
     

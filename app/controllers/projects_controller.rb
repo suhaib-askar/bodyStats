@@ -7,7 +7,9 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    
+    if request.path != project_path(@project)
+      redirect_to @project, status: :moved_permanently
+    end
   end
  
   def create
@@ -15,7 +17,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to track_items_url }
+        format.html { redirect_to project_track_items_url(@project) }
       else
         format.html { render :new }
       end

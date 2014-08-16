@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       put   '/reset_password'        => 'devise/passwords#update', as: ''
       
       scope '/settings' do
-        resources :track_items, except: [ :show, :edit, :new ]
+        
         # confirmation
         # get   '/confirm'        => 'devise/confirmations#show',   as: 'person_confirmation'
         # post  '/confirm'        => 'devise/confirmations#create'
@@ -51,8 +51,12 @@ Rails.application.routes.draw do
     end
 
     resources :projects, path: '', except: [ :index, :create ] do
-      get 'all' => 'projects#index', as:'', on: :collection
-      post 'all' => 'projects#create', on: :collection
+      resources :track_items, only: [ :index, :create, :destroy, :update ], on: :member
+      collection do
+        get 'all' => 'projects#index', as: ''
+        post 'all' => 'projects#create'
+      end
+      
     end
   end
 

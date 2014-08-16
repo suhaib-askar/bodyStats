@@ -1144,9 +1144,63 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   width: 600px;
 }
 
-.track {
-  .track-combo {
-    
+
+
+.track-container {
+  .track-group {
+    position: relative;
+    .track {
+      .track-combo {
+        position: absolute;
+        top: 54px;
+        left: 460px;
+        width: 100px;
+      }
+      .track-name {
+      }
+      .track-button {
+        position: absolute;
+        top: 53px;
+        right: 20px;
+      }
+      display: inline-block;
+    }
   }
-  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 640px;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
+
+
+.track-items-table {
+  margin: auto;
+  width: 100%;
+
+  .track-cont {
+    margin-bottom: 25px;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    background: #F5F5F5;
+    .track-item-name {
+      float: left;
+    }
+    .track-item-combo {
+      width: 100px;
+      float: left;
+    }
+    .track-item-delete {
+      margin-left: 10px;
+    }
+  }
+}
+

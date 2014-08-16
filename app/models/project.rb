@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   friendly_id :name, use: [ :history, :slugged, :finders ]
   
   belongs_to :user
-  has_many :track_items
+  has_many :items
   
   before_save { name.downcase! }
 

@@ -7,7 +7,7 @@
         / Не подходит потому что это создает пустой трек итем еще не сохраненный
         / и мы на этой же странице выводим трек итемы с пустым.
         / след способ не создает пустой итем, он передает данные в екшен а там уже создается новый итем
-        = simple_form_for([@project, @track_item]) do |f|
+        = simple_form_for([@project, @item]) do |f|
           %dl.form.track
             %dd= f.input :name, label: false, placeholder: "Item name", autofocus: true, required: false, input_html: { class: "track-name" }
           %dl.form.track
@@ -18,9 +18,9 @@
       %h3 Your items
       .boxed-group-inner
         %br
-        - unless @project.track_items.empty?
+        - unless @project.items.empty?
           %div.track-items-table
-            - @project.track_items.each do |item|
+            - @project.items.each do |item|
               %div.track-cont
                 = simple_form_for([@project, item]) do |f|
                   %dl.form.track

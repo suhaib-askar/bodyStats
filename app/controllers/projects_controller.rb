@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_track_items_url(@project) }
+        format.html { redirect_to project_items_url(@project) }
       else
         format.html { render :new }
       end

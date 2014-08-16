@@ -5,9 +5,9 @@
   %h3 Your items
   .boxed-group-inner
     %br
-    - unless @project.track_items.empty?
+    - unless @project.items.empty?
       %div.track-items-table
-        - @project.track_items.each do |item|
+        - @project.items.each do |item|
           %div.track-cont
             = simple_form_for([@project, item]) do |f|
               %dl.form.track

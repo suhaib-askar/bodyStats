@@ -1,6 +1,7 @@
 class TrackItem < ActiveRecord::Base
 
   belongs_to :item
-  validates :user_data, numericality: true
+  VALID_DATA_REGEX = /\d/
+  validates :user_data, format: { with: VALID_DATA_REGEX}
 
 end

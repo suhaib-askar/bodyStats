@@ -2,7 +2,14 @@
   %h3=  @project.description
   .boxed-group-inner
     %br
-    = high_chart("chart", @chart) 
+    
+    /= high_chart("chart", @chart) 
+    /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
+    /= line_chart User.group_by_day(:created_at).count
+    /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
+    / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
+    = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
+    /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
 .boxed-group.items-table
   %h3= link_to fl(@project.name), project_path(@project)
   .boxed-group-inner
@@ -17,3 +24,214 @@
                 %dd.dib= unit(item.unit_id)
     - else
       %h1 Create your project #{link_to 'items', project_items_path(@project)} ...
+
+
+
+/ %aside#menu.absolute.bck.light.column_3
+/   %header.bck.dark
+/     .session.on-left
+/       %strong
+/         logged in as
+/         %a.color.theme{:href => "#"} soyjavi
+/     %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
+/   %article.bck.light.scroll
+/     %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
+/     .margin-left.margin-right
+/       %h4.text.bold.color.theme.inline Javi Jiménez
+/       %span.margin-left.tag.bck.color.inline.text.bold pro
+/       %a.block{:href => "#"}
+/         %span.icon.twitter
+/         soyjavi
+/     %hr/
+/     .margin{"data-tuktuk" => "buttons"}
+/       %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
+/       %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
+/     %hr/
+/     %ul.margin{"data-tuktuk" => "totals"}
+/       %li
+/         %strong 3609
+/         %small followers
+/       %li
+/         %strong 138
+/         %small following
+/       %li
+/         %strong 14
+/         %small lists
+/     %hr/
+/     .margin
+/       %strong.text.big.normal.block
+/         About
+/         %a{:href => "#"} Orman Clark
+/       .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+/     %nav.text.bold{"data-tuktuk" => "menu"}
+/       %a.active{:href => "#"}
+/         %span.icon.user>
+/         Shots
+/         %small (100)
+/       %a{:href => "#"}
+/         %span.icon.heart>
+/         Trending
+/         %small (3)
+/       %a{:href => "#"}
+/         %span.icon.group>
+/         Following
+/         %small (192)
+/       %a{:href => "#"}
+/         %span.icon.star>
+/         Debuts
+/         %small (160)
+/ %aside.column_3
+/   %header.bck.theme
+/     %strong TukTuk Application
+/     %a.on-right.text.big.icon.cog{"data-tuktuk-box" => "menu", :href => "#"}
+/   %article.bck.dark.scroll
+/     %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
+/     .margin-left.margin-right
+/       %h4.text.bold.color.theme.inline Javi Jiménez
+/       %span.margin-left.tag.bck.theme.inline.text.bold pro
+/       %a.block{:href => "#"}
+/         %span.icon.twitter
+/         soyjavi
+/     %hr/
+/     .margin{"data-tuktuk" => "buttons"}
+/       %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
+/       %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
+/     %hr/
+/     %ul.margin{"data-tuktuk" => "totals"}
+/       %li
+/         %strong 3609
+/         %small followers
+/       %li
+/         %strong 138
+/         %small following
+/       %li
+/         %strong 14
+/         %small lists
+/     %hr/
+/     .margin
+/       %strong.text.big.normal.block
+/         About
+/         %a{:href => "#"} Orman Clark
+/       .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+/     %nav.text.bold{"data-tuktuk" => "menu"}
+/       %a.active{:href => "#"}
+/         %span.icon.user>
+/         Shots
+/         %small (100)
+/       %a{:href => "#"}
+/         %span.icon.heart>
+/         Trending
+/         %small (3)
+/       %a{:href => "#"}
+/         %span.icon.group>
+/         Following
+/         %small (192)
+/       %a{:href => "#"}
+/         %span.icon.star>
+/         Debuts
+/         %small (160)
+/   %footer.bck.dark.text.center
+/     Handcrafted by
+/     %a.color.theme.text.bold{:href => "http://tapquo.com"} tapquo
+/ %section
+/   %header
+/     %h3.on-left.text.thin
+/       Web Application
+/       %span.tag.bck.theme NEW!
+/     %nav.on-right
+/       %button.tiny tiny
+/       %button.small small
+/       %button normal
+/   %article.padding.scroll
+/     .margin-bottom
+/       %h4.text.book.inline
+/         %span.icon.star.color.theme
+/         Featured
+/       %nav.inline.on-right
+/         %a.button.small{:href => "#"}
+/           %span.icon.search>
+/           Search
+/         %a.button.theme.small{:href => "#"}
+/           %span.icon.envelope>
+/           Send
+/     .inline
+/       .column_4.thumb.bck.light thumb
+/       .column_4.thumb.bck.light thumb
+/     .margin-bottom
+/       %h4.text.book.inline
+/         %span.icon.group.color.theme
+/         Friends
+/       %nav.inline.on-right
+/         %a.button.small{:href => "#"}
+/           %span.icon.search>
+/           Search
+/     .inline
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/       .column_2.thumb.bck.light thumb
+/   %footer.bck.light
+/     %nav.on-left.text.bold{"data-tuktuk" => "menu"}
+/       %a.active{:href => "#"}
+/         Shots
+/         %small (100)
+/       %a{:href => "#"}
+/         Projects
+/         %small (3)
+/       %a{:href => "#"}
+/         Likes
+/         %small (192)
+/       %a{:href => "#"}
+/         Tags
+/         %small (160)
+/     %nav.on-right
+/       %button.tiny tiny
+/       %button.small small
+/       %button normal
+/ #modal.column_5{"data-tuktuk" => "modal"}
+/   %header
+/     %h4.text.book.inline Normal window
+/     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
+/   %article
+/     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
+/ #modal-right.side.column_5{"data-tuktuk" => "modal"}
+/   %header
+/     %h4.inline.text.book Side window.
+/     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
+/   %article.form
+/     %label example of input
+/     %input{:type => "text", :value => "text"}/
+/     %input.large{:type => "text", :value => "text"}/
+/     %label Example of textarea
+/     %textarea textarea
+/     %textarea.large textarea
+/     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
+/   %footer
+/     %button{"data-modal" => "close"} Save
+/ :javascript
+/   TukTuk.Modal.loading();
+/   setTimeout( TukTuk.Modal.hide, 1000);
+
+/ :css 
+/   .my-tuk {height:500px;width:100%; }
+/   .my-tuk{margin:0;padding:0;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;}
+/   .my-tuk *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0}
+/   .my-tuk > header{line-height:48px;}
+/   .my-tuk > header nav a{margin:0 .5em;}
+/   .my-tuk > header nav a:last-child{margin-right:0}
+/   .my-tuk > section.padding{padding:4em 0}
+/   .my-tuk > section.landing{padding:6em 0;}
+/   .my-tuk > section.landing h1{font-size:8em}
+/   .my-tuk > section.landing h2{font-size:4em}
+/   .my-tuk > section.landing h3{font-size:2.8em}
+/   .my-tuk > section.landing .form.subscribe{margin-top:1em;}
+/   .my-tuk > section.landing .form.subscribe *{float:left}
+/   .my-tuk > section.landing .form.subscribe input{-webkit-box-flex:1;-moz-box-flex:1;-ms-box-flex:1;-o-box-flex:1;box-flex:1;width:85%;border-right:0;margin-top:0;border:0}
+/   .my-tuk > section.landing .form.subscribe .button,.my-tuk > section.landing .form.subscribe button{width:15%;-webkit-box-shadow:none;-moz-box-shadow:none;-ms-box-shadow:none;-o-box-shadow:none;box-shadow:none}

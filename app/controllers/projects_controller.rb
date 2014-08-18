@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_project, only: [ :show, :edit, :update, :destroy ]
 
@@ -25,13 +26,14 @@ class ProjectsController < ApplicationController
     #   f.chart({:defaultSeriesType=>"column"})
     # end
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(text: "Monthly Average Temperature")
-      f.subtitle(text: "Source: WorldClimate.com")
-       f.series(name: 'Tokyo', data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6])
-      f.series(name: 'London', data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8])
+      f.title(text: fl(@project.name))
+      f.subtitle(text: @project.description)
+      @project.items.each do |i|
+        f.series(name: i.name, data: i.track_items.map { |ti| ti.user_data }) 
+      end
       f.xAxis(categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
       f.yAxis({ 
-        title: { text: "Temperature (C)" } 
+        title: { text: "Performance" } 
         })
       f.plotOptions({
           line: {
@@ -39,11 +41,69 @@ class ProjectsController < ApplicationController
             enableMouseTracking: true
           }
         })
+      f.chart({ defaultSeriesType: "line" })
     end
+
+    # @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    #   f.data({csv: "csv"})
+    #   f.title(text: "lala")
+    #   f.subtitle(text: "la")
+    #   f.xAxis({
+    #     type: 'datetime',
+    #     tickInterval: 7*24*3600*1000,
+    #     tickWidth: 0,
+    #     gridLineWidth: 1,
+    #     labels: { align: 'left', x: 3, y: -3 }
+    #     })
+    #   f.yAxis [{
+    #       title: { text: nil },
+    #       labels: {
+    #         align: 'left',
+    #         x: 3,
+    #         y: 16,
+    #         format: '{value:.,0f}'
+    #       },
+    #       showFirstLabel: false  
+    #     }, 
+    #     {
+    #       linkedTo: 0,
+    #       gridLineWidth: 0,
+    #       opposite: true,
+    #       title: { text: nil },
+    #       labels: {
+    #         align: 'right',
+    #         x: -3,
+    #         y: 16,
+    #         format: '{value:.,0f}'
+    #       },
+    #       showFirstLabel: false
+    #     }]
+    #     f.legend({
+    #       align: 'left',
+    #       verticalAlign: 'top',
+    #       y: 20,
+    #       floating: true,
+    #       borderWidth: 0  
+    #     })
+    #     f.tooltip({
+    #       shared: true,
+    #       crosshairs: true
+    #     })
+    #     f.plotOptions({
+    #       series: {
+    #         cursor: 'pointer',
+    #         marker: { lineWidth: 1 }
+    #       }  
+    #     })
+    #     f.series({
+    #       name: 'All visits',
+    #       lineWidth: 4,
+    #       marker: { radius: 4 }  
+    #     })
+    # end
   end
  
   def create
-    #render text: project_params.merge( user_id: current_user.id)
     @project = current_user.projects.build(project_params)
     respond_to do |format|
       if @project.save

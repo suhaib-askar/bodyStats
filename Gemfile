@@ -40,6 +40,8 @@ gem 'nokogiri', '~> 1.6.2.1'
 gem 'friendly_id', '~> 5.0.4'
 gem 'babosa', '~> 0.3.11'
 
+gem 'lazy_high_charts', '~> 1.5.4'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'
   gem 'rspec-its', '~> 1.0.1'

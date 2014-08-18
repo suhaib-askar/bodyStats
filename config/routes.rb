@@ -51,7 +51,9 @@ Rails.application.routes.draw do
     end
 
     resources :projects, path: '', except: [ :index, :create ] do
-      resources :items, only: [ :index, :create, :destroy, :update ], on: :member
+      resources :items, only: [ :index, :create, :destroy, :update ], on: :member do
+        resources :track_items, only: [ :create, :update, :destroy ]
+      end
       collection do
         get 'all' => 'projects#index', as: ''
         post 'all' => 'projects#create'

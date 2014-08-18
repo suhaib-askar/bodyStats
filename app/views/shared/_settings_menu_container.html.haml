@@ -5,5 +5,6 @@
         = gravatar_for(current_user, size: 20)
         = current_user.name || current_user.email
       %ul.expanded.section-nav
+        %li= link_to "General", edit_user_registration_path, data: { "selected-links" => '#' }
         %li= link_to "Profile", edit_user_registration_path, class: "selected", data: { "selected-links" => edit_user_registration_path }
-        %li= link_to "Projects", '#', data: { "selected-links" => '#' }
+        %li= link_to "Projects", edit_user_registration_path, data: { "selected-links" => '#' }

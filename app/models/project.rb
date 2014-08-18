@@ -1,13 +1,13 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   extend Babosa
-
-  friendly_id :name, use: [ :history, :slugged, :finders ]
+  before_save { self.name = name.mb_chars.downcase }
+  friendly_id :name, use: [ :scoped, :slugged, :finders ], scope: :user
   
   belongs_to :user
   has_many :items
   
-  before_save { name.downcase! }
+
 
   validates :name, presence: true, length: { maximum: 30 }#, uniqueness: { scope: :user_id, case_sensitive: false } тоже самое что и метод
   validate :uniq_proj_for_user
@@ -25,8 +25,12 @@ class Project < ActiveRecord::Base
   end
 
   def uniq_proj_for_user
-    if Project.exists? ["user_id = ? AND name = ?", user_id, name]
-      errors.add( :name, 'name already exists on this account' )
+    if Project.exists? ["user_id = ? AND name = ? OR slug = ?", 
+                          user_id, 
+                          name.mb_chars.downcase, 
+                          normalize_friendly_id(name.mb_chars.downcase)
+                        ]
+      errors.add( :name, 'project already exists on this account' )
     end
   end
 

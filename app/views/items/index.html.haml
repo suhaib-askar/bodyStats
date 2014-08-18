@@ -3,7 +3,7 @@
     .boxed-group.track-group
       %h3 Create your track items
       .boxed-group-inner
-        /= simple_form_for([@project, @project.track_items.build]) do |f|
+        /= simple_form_for([@project, @project.items.build]) do |f|
         / Не подходит потому что это создает пустой трек итем еще не сохраненный
         / и мы на этой же странице выводим трек итемы с пустым.
         / след способ не создает пустой итем, он передает данные в екшен а там уже создается новый итем
@@ -11,7 +11,7 @@
           %dl.form.track
             %dd= f.input :name, label: false, placeholder: "Item name", autofocus: true, required: false, input_html: { class: "track-name" }
           %dl.form.track
-            %dd= f.association :unit, label_method: :full_en,  prompt: "Unit",  value_method: :id, label: false, input_html: { class: "form-control track-combo" }
+            %dd= f.association :unit, label_method: unit_meth, prompt: false, value_method: :id, label: false, input_html: { class: "form-control track-combo" }
           %dl.track
             = f.button :submit, "Add", class: "button primary track-button"
     .boxed-group
@@ -26,7 +26,7 @@
                   %dl.form.track
                     %dd= f.input :name, label: false, placeholder: "Item name", autofocus: true, required: false, input_html: { class: "track-item-name" }
                     %dl.form.track
-                      %dd= f.association :unit, label_method: :full_en,  prompt: "Unit",  value_method: :id, label: false, input_html: { class: "form-control track-item-combo" }
+                      %dd= f.association :unit, label_method: unit_meth, prompt: false, value_method: :id, label: false, input_html: { class: "form-control track-item-combo" }
                 = button_to 'X', [@project, item], method: :delete, :name => 'delete', data: { confirm: 'Вы уверены?' }, class: "track-item-delete button danger"
         - else 
-          %h2 Tracking list is empty.
+          %h2{ style: "text-align: center" } Tracking list is empty.

@@ -29,4 +29,7 @@ module ApplicationHelper
       #   key = 'danger' if key == 'alert'
       #   return content_tag :div, value, class: "alert alert-#{key} container"
 
+  def fl(text)
+    text.mb_chars.capitalize.to_s
+  end
 end

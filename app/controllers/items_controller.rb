@@ -4,12 +4,12 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:update, :destroy]
 
   def index
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
     @item = Item.new
   end
 
   def create
-    @project = Project.find(params[:project_id])
+    @project = current_user.projects.find(params[:project_id])
     @item = @project.items.build(item_params)
     respond_to do |format|
       if @item.save

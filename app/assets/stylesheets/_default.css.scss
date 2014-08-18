@@ -917,6 +917,11 @@ div.fieldgroup div.error {
   position: relative;
 }
 
+.items{
+  margin: auto;
+  width: 250px;
+}
+
 .boxed-group .boxed-group-inner {
   background: none repeat scroll 0 0 #fff;
   border: 1px solid #d8d8d8;
@@ -951,7 +956,7 @@ div.fieldgroup div.error {
   vertical-align: middle;
 }
 .boxed-group > h3 a, .boxed-group .heading a {
-  color: inherit;
+  //color: inherit;
 }
 .boxed-profile .form-left {
   float: left;
@@ -1166,16 +1171,8 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
       display: inline-block;
     }
   }
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
   width: 640px;
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
 }
 
 
@@ -1204,3 +1201,22 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   }
 }
 
+.dib {
+  display: inline-block;
+}
+
+.track-data {
+  float: left;
+  width: 70%;
+  border: none;
+  margin: 30px 40px;
+  display: block;
+}
+
+.items-table {
+  width: 22%;
+  margin: 0 auto;
+  float: right;
+  border-radius: 0 !important;
+
+}

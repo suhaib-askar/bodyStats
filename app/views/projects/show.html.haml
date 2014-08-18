@@ -1,19 +1,19 @@
-= @project.name
-= @project.description
-
-.boxed-group
-  %h3 Your items
+.boxed-group.track-data
+  %h3=  @project.description
+  .boxed-group-inner
+    %br
+    = high_chart("chart", @chart) 
+.boxed-group.items-table
+  %h3= link_to fl(@project.name), project_path(@project)
   .boxed-group-inner
     %br
     - unless @project.items.empty?
       %div.track-items-table
         - @project.items.each do |item|
           %div.track-cont
-            = simple_form_for([@project, item]) do |f|
+            = simple_form_for([@project, item, item.track_items.build]) do |f|
               %dl.form.track
-                %dd= f.input :name, label: false, placeholder: "Item name", autofocus: true, required: false, input_html: { class: "track-item-name" }
-                %dl.form.track
-                  %dd= f.association :unit, label_method: :full_en,  prompt: "Unit",  value_method: :id, label: false, input_html: { class: "form-control track-item-combo" }
-            = button_to 'X', [@project, item], method: :delete, :name => 'delete', data: { confirm: 'Вы уверены?' }, class: "track-item-delete button danger"
-    - else 
-      %h2 Tracking list is empty.
+                %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false
+                %dd.dib= unit(item.unit_id)
+    - else
+      %h1 Create your project #{link_to 'items', project_items_path(@project)} ...

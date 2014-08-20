@@ -1,20 +1,21 @@
-#site-container.context-loader-container{"data-pjax-container" => ""}
-  #login.auth-form
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .auth-form-header
-        %h1 Sign in
-      .auth-form-body
-        = f.label :email
-        = f.email_field :email, autofocus: true, class: "input-block"
-        = f.label :password, class: "forgot-password"
-        = link_to '(forgot password)', new_user_password_path
-        = f.password_field :password, autocomplete: "off", class: "input-block"
-        - if devise_mapping.rememberable?
-          %div.remember-me   
-            %p
-              = f.check_box :remember_me
-              = f.label :remember_me?
-        %div= f.submit "Sign in", class: "button"
+.margin-content-2
+  #site-container.context-loader-container{"data-pjax-container" => ""}
+    #login.auth-form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .auth-form-header
+          %h1 Sign in
+        .auth-form-body
+          = f.label :email
+          = f.email_field :email, autofocus: true, class: "input-block"
+          = f.label :password, class: "forgot-password"
+          = link_to '(forgot password)', new_user_password_path
+          = f.password_field :password, autocomplete: "off", class: "input-block"
+          - if devise_mapping.rememberable?
+            %div.remember-me   
+              %p
+                = f.check_box :remember_me
+                = f.label :remember_me?
+          %div= f.submit "Sign in", class: "button"
 
 / %h2 Sign in
 / = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

@@ -1,31 +1,30 @@
-.wrapper
-  .header.custom-header
-    .container.clearfix
-      %a.header-logo-wordmark{href: "/"}
-        %span.mega-octicon
-          Ocibaka
-      .header-actions
-        - if signed_in?
-          %ul#user-links
-            %li
-              = link_to edit_user_registration_path, class: 'name' do
-                = gravatar_for current_user, size: 20
-                = current_user.name || current_user.email
-            = link_to 'Logout', destroy_user_session_path, method: :delete, class: "button"
-        - else
-          = link_to 'Sign up', new_user_registration_path, class: "button primary"
-          = link_to 'Sign in', new_user_session_path,  class: "button signin"
-      .command-bar
-        %ul.top-nav
-          %li.explore
-            %a{href: "#"} Explore
-          %li.features
-            %a{href: "#"} Features
-          %li.enterprise
-            %a{href: "#"} Enterprise
-          %li.blog
-            %a{href: "#"} Blog
-        = form_tag("/search", method: "get", class: "command-bar-form", id: "top_search_form") do
-          .commandbar
-            %span
-            = text_field_tag :q, '',  id: "js-command-bar-field", tabindex: "1", placeholder: "Search", autocapitalize: "off", "data-hotkey" => "s"
+.header.custom-header
+  .container.clearfix
+    %a.header-logo-wordmark{href: "/"}
+      %span.mega-octicon
+        Ocibaka
+    .header-actions
+      - if signed_in?
+        %ul#user-links
+          %li
+            = link_to edit_user_registration_path, class: 'name' do
+              = gravatar_for current_user, size: 20
+              = current_user.name || current_user.email
+          = link_to 'Logout', destroy_user_session_path, method: :delete, class: "button"
+      - else
+        = link_to 'Sign up', new_user_registration_path, class: "button primary"
+        = link_to 'Sign in', new_user_session_path,  class: "button signin"
+    .command-bar
+      %ul.top-nav
+        %li.explore
+          %a{href: "#"} Explore
+        %li.features
+          %a{href: "#"} Features
+        %li.enterprise
+          %a{href: "#"} Enterprise
+        %li.blog
+          %a{href: "#"} Blog
+      = form_tag("/search", method: "get", class: "command-bar-form", id: "top_search_form") do
+        .commandbar
+          %span
+          = text_field_tag :q, '',  id: "js-command-bar-field", tabindex: "1", placeholder: "Search", autocapitalize: "off", "data-hotkey" => "s"

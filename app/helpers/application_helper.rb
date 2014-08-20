@@ -32,4 +32,8 @@ module ApplicationHelper
   def fl(text)
     text.mb_chars.capitalize.to_s
   end
+
+  def no_header_footer!
+    gon.no_header_footer = true if signed_in?
+  end
 end

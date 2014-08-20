@@ -9,7 +9,7 @@ defined?(Footnotes) && Footnotes.setup do |f|
   # f.enabled = -> { User.current.admin? }
   # Beware of thread-safety though, Footnotes.enabled is NOT thread safe
   # and should not be modified anywhere else.
-  f.enabled = true
+  f.enabled = false
   # Only toggle some notes :
   f.notes = [:assigns, :session, :cookies, :params, :filters, :routes, :env, :queries, :log]
   f.notes += [:page_load]

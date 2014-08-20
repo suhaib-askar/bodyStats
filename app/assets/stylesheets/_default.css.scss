@@ -5,6 +5,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
@@ -290,10 +291,10 @@ pre {
   position: fixed;
   right: 0;
   left: 0;
-  z-index: 1030;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
   top: 0;
+  z-index: 1030;
+  -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+  transform: matrix(1, 0, 0, 1, 0, 0); 
 }
 
 .site {
@@ -786,10 +787,10 @@ div.fieldgroup div.error {
 }
 
 .alert {
-  margin-bottom: 15px;
-  margin-top: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  margin-left: -490px;
   width: 980px;
   a {
     line-height: 18px;
@@ -1061,8 +1062,16 @@ dl.form input[type="text"]:focus, dl.form .focused .drag-and-drop, .focused dl.f
   margin-left: 10px;
 }
 
-.wrap-cont {
-  margin-top: 30px;
+.margin-content-3 {
+  margin-top: 100px;
+}
+
+.margin-content-2 {
+  margin-top: 165px;
+}
+
+.margin-content-1 {
+  margin-top: 65px;
 }
 
 .boxed-group.dangerzone > h3 {

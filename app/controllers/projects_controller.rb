@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_project, only: [ :show, :edit, :update, :destroy ]
-
+  before_action :no_header_footer!, only: [ :show ]
   def new
     @project = Project.new
   end
@@ -123,5 +123,5 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :description)
     end
-
+    
 end

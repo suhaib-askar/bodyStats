@@ -2,15 +2,14 @@
 %html
   %head
     %title= full_title yield :title
+    = include_gon
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_include_tag "highcharts/highcharts.js", "chartkick" 
+    = javascript_include_tag "highcharts/highcharts.js", "chartkick", 'data-turbolinks-track' => true
     = csrf_meta_tags
     = render 'layouts/shim'
-  %body{ class: controller.controller_name }
+  %body
     = render 'layouts/header'
-    .site.clearfix
-      = print_errors
-      = yield                  
+    = print_errors
+    = yield                  
     = render 'layouts/footer'
-

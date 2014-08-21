@@ -18,22 +18,20 @@ module ApplicationHelper
       message
     end
   end
-      #   .message
-      #     %div{ class: "alert-message #{key}" }
-      #       %a.close{ href: "#" } &times
-      #       %center
-      #         %strong= value
-
-      # flash.each do |key, value|
-      #   key = 'success' if key == 'notice'
-      #   key = 'danger' if key == 'alert'
-      #   return content_tag :div, value, class: "alert alert-#{key} container"
 
   def fl(text)
     text.mb_chars.capitalize.to_s
   end
 
   def no_header_footer!
-    gon.no_header_footer = true if signed_in?
+    if signed_in?
+      @tuktuk = "boxes"
+      @no_header_footer = true 
+    end
+  end
+
+
+  def my(render)
+    render unless @no_header_footer
   end
 end

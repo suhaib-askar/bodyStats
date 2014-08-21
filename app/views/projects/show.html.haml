@@ -27,12 +27,12 @@
 
 
 
-%aside#menu.absolute.bck.light.column_3
+%aside.column_3
   %header.bck.dark
     .session.on-left
       %strong
         logged in as
-        %a.color.theme{:href => "#"} soyjavi
+        %a.color.theme{:href => "/"} soyjavi
     %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
   %article.bck.light.scroll
     %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
@@ -61,7 +61,7 @@
     .margin
       %strong.text.big.normal.block
         About
-        %a{:href => "#"} Orman Clark
+        = link_to 'Orman Clark', root_url
       .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
     %nav.text.bold{"data-tuktuk" => "menu"}
       %a.active{:href => "#"}
@@ -80,7 +80,7 @@
         %span.icon.star>
         Debuts
         %small (160)
-%aside.column_3
+%aside#menu.absolute.bck.light.column_3
   %header.bck.theme
     %strong TukTuk Application
     %a.on-right.text.big.icon.cog{"data-tuktuk-box" => "menu", :href => "#"}
@@ -213,7 +213,7 @@
     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
   %article
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
-#modal-right.side.column_5{"data-tuktuk" => "modal"}
+%aside.column_4
   %header
     %h4.inline.text.book Side window.
     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
@@ -232,14 +232,13 @@
   setTimeout( TukTuk.Modal.hide, 1000);
 
 :css
+  body { overflow: hidden; }
   [data-tuktuk=boxes]{display:-moz-box;}
   [data-tuktuk=boxes] > aside,[data-tuktuk=boxes] > section{display:-moz-box;}
   [data-tuktuk=buttons]{display:-moz-box;}
   [data-tuktuk=totals]{display:-moz-box;}
   [data-tuktuk="modal"].side > div{display:-moz-box;}
   [data-tuktuk="modal"].side{display:-moz-box;}
-  .flexbox{ display:-moz-box;}
+  .flexbox { display:-moz-box;}
   [data-tuktuk=boxes] > aside > div{display:-moz-box;}
   
-= javascript_tag do
-  window.controller = "<%= projects_url %>"

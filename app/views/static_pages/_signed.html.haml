@@ -1,74 +1,21 @@
-%aside#menu.absolute.bck.light.column_3
-  %header.bck.dark
-    .session.on-left
-      %strong
-        logged in as
-        %a.color.theme{:href => "#"} soyjavi
-    %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
-  %article.bck.light.scroll
-    %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
-    .margin-left.margin-right
-      %h4.text.bold.color.theme.inline Javi Jiménez
-      %span.margin-left.tag.bck.color.inline.text.bold pro
-      %a.block{:href => "#"}
-        %span.icon.twitter
-        soyjavi
-    %hr/
-    .margin{"data-tuktuk" => "buttons"}
-      %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
-      %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
-    %hr/
-    %ul.margin{"data-tuktuk" => "totals"}
-      %li
-        %strong 3609
-        %small followers
-      %li
-        %strong 138
-        %small following
-      %li
-        %strong 14
-        %small lists
-    %hr/
-    .margin
-      %strong.text.big.normal.block
-        About
-        %a{:href => "#"} Orman Clark
-      .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    %nav.text.bold{"data-tuktuk" => "menu"}
-      %a.active{:href => "#"}
-        %span.icon.user>
-        Shots
-        %small (100)
-      %a{:href => "#"}
-        %span.icon.heart>
-        Trending
-        %small (3)
-      %a{:href => "#"}
-        %span.icon.group>
-        Following
-        %small (192)
-      %a{:href => "#"}
-        %span.icon.star>
-        Debuts
-        %small (160)
 %aside.column_3
   %header.bck.theme
-    %strong TukTuk Application
-    %a.on-right.text.big.icon.cog{"data-tuktuk-box" => "menu", :href => "#"}
+    %strong Ocibaka
+    = link_to '', edit_user_registration_path, class: "on-right text big icon cog", data: { "tuktuk-box" => "menu" }
   %article.bck.dark.scroll
-    %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
+    = gravatar_for current_user, class: "responsive"
     .margin-left.margin-right
-      %h4.text.bold.color.theme.inline Javi Jiménez
-      %span.margin-left.tag.bck.theme.inline.text.bold pro
-      %a.block{:href => "#"}
+      %h4.text.bold.color.theme.inline= current_user.name
+      %span.margin-left.tag.bck.theme.inline.text.bold admin
+      = link_to root_path, class: "block" do 
         %span.icon.twitter
-        soyjavi
+        ocibaka
     %hr/
-    .margin{"data-tuktuk" => "buttons"}
-      %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
-      %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
+    .margin{data:{tuktuk:"buttons"}}
+      %button.theme.button{data:{tip:"Click to view a modal window", "tuktuk-modal"=>"modal"}} Modal
+      %button.button.primary{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
     %hr/
-    %ul.margin{"data-tuktuk" => "totals"}
+    %ul.margin{data:{tuktuk:"totals"}}
       %li
         %strong 3609
         %small followers
@@ -82,37 +29,31 @@
     .margin
       %strong.text.big.normal.block
         About
-        %a{:href => "#"} Orman Clark
+        = link_to 'Orman Clark', '#' 
       .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    %nav.text.bold{"data-tuktuk" => "menu"}
-      %a.active{:href => "#"}
-        %span.icon.user>
+    %nav.text.bold{data:{tuktuk:"menu"}}
+      = link_to '#', class: 'active' do
+        %span.icon.user 
         Shots
         %small (100)
-      %a{:href => "#"}
+      = link_to '#' do
         %span.icon.heart>
         Trending
         %small (3)
-      %a{:href => "#"}
+      = link_to '#' do
         %span.icon.group>
         Following
         %small (192)
-      %a{:href => "#"}
+      = link_to '#' do
         %span.icon.star>
         Debuts
         %small (160)
-  %footer.bck.dark.text.center
-    Handcrafted by
-    %a.color.theme.text.bold{:href => "http://tapquo.com"} tapquo
 %section
   %header
     %h3.on-left.text.thin
       Web Application
       %span.tag.bck.theme NEW!
     %nav.on-right
-      %button.tiny tiny
-      %button.small small
-      %button normal
   %article.padding.scroll
     .margin-bottom
       %h4.text.book.inline
@@ -175,9 +116,6 @@
         Tags
         %small (160)
     %nav.on-right
-      %button.tiny tiny
-      %button.small small
-      %button normal
 #modal.column_5{"data-tuktuk" => "modal"}
   %header
     %h4.text.book.inline Normal window
@@ -211,4 +149,59 @@
   [data-tuktuk="modal"].side{display:-moz-box;}
   .flexbox { display:-moz-box;}
   [data-tuktuk=boxes] > aside > div{display:-moz-box;}
-  
+
+
+
+/ %aside#menu.absolute.bck.light.column_3
+/   %header.bck.dark
+/     .session.on-left
+/       %strong
+/         logged in as
+/         %a.color.theme{:href => "/"} soyjavi
+/     %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
+/   %article.bck.light.scroll
+/     %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
+/     .margin-left.margin-right
+/       %h4.text.bold.color.theme.inline Javi Jiménez
+/       %span.margin-left.tag.bck.color.inline.text.bold pro
+/       %a.block{:href => "#"}
+/         %span.icon.twitter
+/         soyjavi
+/     %hr/
+/     .margin{"data-tuktuk" => "buttons"}
+/       %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
+/       %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
+/     %hr/
+/     %ul.margin{"data-tuktuk" => "totals"}
+/       %li
+/         %strong 3609
+/         %small followers
+/       %li
+/         %strong 138
+/         %small following
+/       %li
+/         %strong 14
+/         %small lists
+/     %hr/
+/     .margin
+/       %strong.text.big.normal.block
+/         About
+/         = link_to 'Orman Clark', root_url
+/       .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+/     %nav.text.bold{"data-tuktuk" => "menu"}
+/       %a.active{:href => "#"}
+/         %span.icon.user>
+/         Shots
+/         %small (100)
+/       %a{:href => "#"}
+/         %span.icon.heart>
+/         Trending
+/         %small (3)
+/       %a{:href => "#"}
+/         %span.icon.group>
+/         Following
+/         %small (192)
+/       %a{:href => "#"}
+/         %span.icon.star>
+/         Debuts
+/         %small (160)

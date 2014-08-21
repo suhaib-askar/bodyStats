@@ -22,23 +22,23 @@
 [data-tuktuk=boxes] > aside .session,[data-tuktuk=boxes] > section .session{height:inherit;}
 [data-tuktuk=boxes] > aside .session > *,[data-tuktuk=boxes] > section .session > *{display:inline-block;float:left}
 
-.button,button{position:relative;display:inline-block;border:none;cursor:pointer;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:2.5em;text-align:center;text-decoration:none;outline:none;background:none;-webkit-transition:background-color 400ms;-moz-transition:background-color 400ms;-ms-transition:background-color 400ms;-o-transition:background-color 400ms;transition:background-color 400ms;}
-.button.icon,button.icon{padding:0 .65em}
-.button:not(.icon),button:not(.icon){padding:0 1em;}
-.button:not(.icon) .icon,button:not(.icon) .icon,.button:not(.icon) .loading,button:not(.icon) .loading{margin-right:.25em}
-.button.large,button.large{font-size:1.4em}
-.button.small,button.small{font-size:.9em}
-.button.tiny,button.tiny{font-size:.8em;line-height:2em;padding:0 .6em}
-.button.anchor,button.anchor{width:100%;}
-.button.anchor:not(.icon) .icon,button.anchor:not(.icon) .icon{position:absolute;left:1em}
-.button.disabled,button.disabled,.button:disabled,button:disabled{cursor:default}
-.button[data-loading] > .icon,button[data-loading] > .icon{display:none}
-.button[data-loading] > .loading,button[data-loading] > .loading{display:inline-block;}
-.button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{-webkit-animation:loading 600ms infinite linear;-moz-animation:loading 600ms infinite linear;-ms-animation:loading 600ms infinite linear;-o-animation:loading 600ms infinite linear;animation:loading 600ms infinite linear}
-.button[data-loading] > .loading,button[data-loading] > .loading{position:relative;top:.2em;font-size:1.25em;}
-.button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{height:1em;width:1em;}
-.button[data-loading] > .loading > .container > span,button[data-loading] > .loading > .container > span,.button[data-loading] > .loading > .container > span::before,button[data-loading] > .loading > .container > span::before,.button[data-loading] > .loading > .container > span::after,button[data-loading] > .loading > .container > span::after{width:.075em;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0}
-
+/*.tuk-button,button{position:relative;display:inline-block;border:none;cursor:pointer;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:2.5em;text-align:center;text-decoration:none;outline:none;background:none;-webkit-transition:background-color 400ms;-moz-transition:background-color 400ms;-ms-transition:background-color 400ms;-o-transition:background-color 400ms;transition:background-color 400ms;}
+.tuk-button.icon,button.icon{padding:0 .65em}
+.tuk-button:not(.icon),button:not(.icon){padding:0 1em;}
+.tuk-button:not(.icon) .icon,button:not(.icon) .icon,.button:not(.icon) .loading,button:not(.icon) .loading{margin-right:.25em}
+.tuk-button.large,button.large{font-size:1.4em}
+.tuk-button.small,button.small{font-size:.9em}
+.tuk-button.tiny,button.tiny{font-size:.8em;line-height:2em;padding:0 .6em}
+.tuk-button.anchor,button.anchor{width:100%;}
+.tuk-button.anchor:not(.icon) .icon,button.anchor:not(.icon) .icon{position:absolute;left:1em}
+.tuk-button.disabled,button.disabled,.button:disabled,button:disabled{cursor:default}
+.tuk-button[data-loading] > .icon,button[data-loading] > .icon{display:none}
+.tuk-button[data-loading] > .loading,button[data-loading] > .loading{display:inline-block;}
+.tuk-button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{-webkit-animation:loading 600ms infinite linear;-moz-animation:loading 600ms infinite linear;-ms-animation:loading 600ms infinite linear;-o-animation:loading 600ms infinite linear;animation:loading 600ms infinite linear}
+.tuk-button[data-loading] > .loading,button[data-loading] > .loading{position:relative;top:.2em;font-size:1.25em;}
+.tuk-button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{height:1em;width:1em;}
+.tuk-button[data-loading] > .loading > .container > span,button[data-loading] > .loading > .container > span,.button[data-loading] > .loading > .container > span::before,button[data-loading] > .loading > .container > span::before,.button[data-loading] > .loading > .container > span::after,button[data-loading] > .loading > .container > span::after{width:.075em;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0}
+*/
 .flexbox{display:-webkit-box;display:-moz-box;display:-ms-box;display:-o-box;display:box;}
 .flexbox.y{-webkit-box-orient:vertical;-moz-box-orient:vertical;-ms-box-orient:vertical;-o-box-orient:vertical;box-orient:vertical;}
 .flexbox.y.top{-webkit-box-pack:start;-moz-box-pack:start;-ms-box-pack:start;-o-box-pack:start;box-pack:start}
@@ -106,7 +106,7 @@ h6{font-size:1rem}
 small{font-size:.9em}
 strong{font-weight:bold}
 
-form input[type="text"],.form input[type="text"],form input[type="password"],.form input[type="password"],form input[type="date"],.form input[type="date"],form input[type="datetime"],.form input[type="datetime"],form input[type="email"],.form input[type="email"],form input[type="number"],.form input[type="number"],form input[type="search"],.form input[type="search"],form input[type="tel"],.form input[type="tel"],form input[type="time"],.form input[type="time"],form input[type="url"],.form input[type="url"],form select,.form select,form textarea,.form textarea{display:inline-block;width:100%;padding:.5em;margin:.1em 0 .25em 0;font-family:inherit;font-size:inherit;-webkit-appearance:none;-webkit-user-select:text;-webkit-font-smoothing:antialiased;}
+/*form input[type="text"],.form input[type="text"],form input[type="password"],.form input[type="password"],form input[type="date"],.form input[type="date"],form input[type="datetime"],.form input[type="datetime"],form input[type="email"],.form input[type="email"],form input[type="number"],.form input[type="number"],form input[type="search"],.form input[type="search"],form input[type="tel"],.form input[type="tel"],form input[type="time"],.form input[type="time"],form input[type="url"],.form input[type="url"],form select,.form select,form textarea,.form textarea{display:inline-block;width:100%;padding:.5em;margin:.1em 0 .25em 0;font-family:inherit;font-size:inherit;-webkit-appearance:none;-webkit-user-select:text;-webkit-font-smoothing:antialiased;}
 form input[type="text"]:focus,.form input[type="text"]:focus,form input[type="password"]:focus,.form input[type="password"]:focus,form input[type="date"]:focus,.form input[type="date"]:focus,form input[type="datetime"]:focus,.form input[type="datetime"]:focus,form input[type="email"]:focus,.form input[type="email"]:focus,form input[type="number"]:focus,.form input[type="number"]:focus,form input[type="search"]:focus,.form input[type="search"]:focus,form input[type="tel"]:focus,.form input[type="tel"]:focus,form input[type="time"]:focus,.form input[type="time"]:focus,form input[type="url"]:focus,.form input[type="url"]:focus,form select:focus,.form select:focus,form textarea:focus,.form textarea:focus{outline:none !important}
 form input[type="text"].large,.form input[type="text"].large,form input[type="password"].large,.form input[type="password"].large,form input[type="date"].large,.form input[type="date"].large,form input[type="datetime"].large,.form input[type="datetime"].large,form input[type="email"].large,.form input[type="email"].large,form input[type="number"].large,.form input[type="number"].large,form input[type="search"].large,.form input[type="search"].large,form input[type="tel"].large,.form input[type="tel"].large,form input[type="time"].large,.form input[type="time"].large,form input[type="url"].large,.form input[type="url"].large,form select.large,.form select.large,form textarea.large,.form textarea.large{font-size:1.4em}
 form textarea,.form textarea{padding:.4em .5em;min-height:2.5em;line-height:1.2em}
@@ -122,6 +122,7 @@ form .select:after,.form .select:after{z-index:128;position:absolute;top:.8em;ri
 form .fieldset label,.form .fieldset label,form fieldset label,.form fieldset label{display:block;text-align:right;float:left;width:25%;padding:.2em .4em 0 0;}
 form .fieldset label > small,.form .fieldset label > small,form fieldset label > small,.form fieldset label > small{display:block;font-size:.8em;font-weight:300}
 form .fieldset input[type="text"],.form .fieldset input[type="text"],form fieldset input[type="text"],.form fieldset input[type="text"],form .fieldset input[type="password"],.form .fieldset input[type="password"],form fieldset input[type="password"],.form fieldset input[type="password"],form .fieldset input[type="date"],.form .fieldset input[type="date"],form fieldset input[type="date"],.form fieldset input[type="date"],form .fieldset input[type="datetime"],.form .fieldset input[type="datetime"],form fieldset input[type="datetime"],.form fieldset input[type="datetime"],form .fieldset input[type="email"],.form .fieldset input[type="email"],form fieldset input[type="email"],.form fieldset input[type="email"],form .fieldset input[type="number"],.form .fieldset input[type="number"],form fieldset input[type="number"],.form fieldset input[type="number"],form .fieldset input[type="search"],.form .fieldset input[type="search"],form fieldset input[type="search"],.form fieldset input[type="search"],form .fieldset input[type="tel"],.form .fieldset input[type="tel"],form fieldset input[type="tel"],.form fieldset input[type="tel"],form .fieldset input[type="time"],.form .fieldset input[type="time"],form fieldset input[type="time"],.form fieldset input[type="time"],form .fieldset input[type="url"],.form .fieldset input[type="url"],form fieldset input[type="url"],.form fieldset input[type="url"],form .fieldset select,.form .fieldset select,form fieldset select,.form fieldset select,form .fieldset textarea,.form .fieldset textarea,form fieldset textarea,.form fieldset textarea{width:75%}
+*/
 [data-control=checkbox]{display:inline-block;margin:.1em 0 .25em 0;height:32px;width:64px;position:relative;font-size:inherit;line-height:32px;}
 [data-control=checkbox] input[type=checkbox]{visibility:hidden}
 [data-control=checkbox]:after,[data-control=checkbox]:before{z-index:0;position:absolute}
@@ -245,8 +246,8 @@ form .fieldset input[type="text"],.form .fieldset input[type="text"],form fields
 .show-tablet,.show-screen,.hide-phone{display:none !important}
 }
 
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-weight:inherit;vertical-align:baseline}
-body,html{height:100%;width:100%}
+
+body,html{height:100%;width:100%; overflow-x: hidden;}
 body{margin:0;padding:0;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:none;}
 body *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;-o-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0}
 body > header{line-height:48px;}
@@ -386,7 +387,7 @@ table th,table td.highlight{font-weight:bold}
 [data-tip].tip-right:before,[data-tip].tip-right:after{left:100%;bottom:50%}
 [data-tip].tip-right:hover:before,[data-tip].tip-right:hover:after{-webkit-transform:translateX(8px);-moz-transform:translateX(8px);-ms-transform:translateX(8px);-o-transform:translateX(8px);transform:translateX(8px)}
 
-.scroll{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;-webkit-box-flex:1;}
+.scroll{overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;-webkit-box-flex:1;-moz-overflow-scrolling:touch;-moz-box-flex:1;}
 .scroll.horizontal{overflow-x:scroll;overflow-y:hidden;white-space:nowrap}
 .clear{clear:both}
 .on-left{float:left}

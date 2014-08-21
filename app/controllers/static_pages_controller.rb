@@ -1,6 +1,5 @@
 class StaticPagesController < ApplicationController
   include ApplicationHelper
-  #before_action :authenticate_user!, only: [:about]
   before_action :no_header_footer!, only: [ :home ]
   
   def home

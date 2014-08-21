@@ -32,8 +32,7 @@
       .boxed-group.dangerzone
         %h3 Delete account
         .boxed-group-inner
-          %br
-          %p Once you delete your account, there is no going back. Please be certain.
+          %p{style: "padding: 10px;" } Once you delete your account, there is no going back. Please be certain.
           %p
             = button_to "Delete your account", registration_path(resource_name), data: { confirm: "Are you sure you want to do this?" }, method: :delete, class: "button danger"
 

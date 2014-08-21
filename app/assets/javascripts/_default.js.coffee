@@ -7,11 +7,12 @@ $(document).on "page:change", ->
     else 
       $(this).removeClass('selected')
 
+
   $('.close').click ->
     $(this).parent('.alert').fadeOut '500', ->
       $(this).remove()
       
-  if gon && gon.no_header_footer
-    $('.header').remove()
-    $('.footer').remove()
-    $('body').attr("data-tuktuk", "boxes")
+  # if gon && gon.no_header_footer
+  #   $('.header').hide()
+  #   $('.footer').hide()
+  #   $('body').attr("data-tuktuk", "boxes")

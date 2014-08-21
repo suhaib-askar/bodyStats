@@ -5,7 +5,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
@@ -732,8 +731,8 @@ div.fieldgroup div.error {
   border-color: -moz-use-text-color #d8dee2 #d8dee2;
   border-image: none;
   border-radius: 0 0 3px 3px;
-  border-right: 1px solid #d8dee2;
-  border-style: none solid solid;
+  border: 1px solid #d8dee2;
+  //border-style: none solid solid;
   border-width: 0 1px 1px;
   font-size: 14px;
   padding: 20px;
@@ -847,6 +846,9 @@ div.fieldgroup div.error {
   color: #222;
   cursor: default;
   font-weight: bold;
+  &:hover {
+    color: inherit;
+  }
 }
 
 .accordion {
@@ -931,6 +933,9 @@ div.fieldgroup div.error {
   color: #666;
   font-size: 13px;
   padding: 1px 10px;
+  input {
+    margin-bottom: 10px;
+  }
 }
 
 .boxed-group > h3, .boxed-group .heading {
@@ -939,7 +944,7 @@ div.fieldgroup div.error {
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
   background-color: #f5f5f5;
-  border-color: #d8d8d8 #d8d8d8 -moz-use-text-color;
+  border-color: #d8d8d8;
   border-image: none;
   border-radius: 3px 3px 0 0;
   border-style: solid solid none;
@@ -1111,32 +1116,16 @@ dl.form input[type="text"]:focus, dl.form .focused .drag-and-drop, .focused dl.f
 }
 
 #user-links {
-  > li {
-    float: left;
-    margin-left: 5px;
-    position: relative;
-    list-style: none outside none;
-    margin: 7px 0 0;
-    a {
-      font-size: 13px;
-      padding: 5px;
-      padding-left: 0px;
-      color: #333333;
-      &:hover, &:focus {
-        color: #4183c4;
-        text-decoration: none;
-      }
-    }
-  }
   .name {
     font-weight: bold;
     line-height: 16px;
     white-space: nowrap;
+    text-decoration: none;
     img {
       border-radius: 3px;
       box-shadow: 0 1px 0 #fff;
       float: left;
-      margin: -2px 5px 0 0;
+      margin: 5px 5px 0 0;
     }
   }
 }

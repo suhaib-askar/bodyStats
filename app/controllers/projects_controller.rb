@@ -29,9 +29,9 @@ class ProjectsController < ApplicationController
       f.title(text: fl(@project.name))
       f.subtitle(text: @project.description)
       @project.items.each do |i|
-        f.series(name: i.name, data: i.track_items.map { |ti| ti.user_data }) 
+        f.series( name: i.name, data: i.track_items.map { |ti| ti.user_data }) 
       end
-      f.xAxis(categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
+      f.xAxis(type: "datetime")
       f.yAxis({ 
         title: { text: "Performance" } 
         })

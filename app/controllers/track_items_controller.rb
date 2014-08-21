@@ -8,7 +8,6 @@ class TrackItemsController < ApplicationController
     @track_item = @item.track_items.build(track_item_params)
     respond_to do |format|
       if @track_item.save
-        flash[:success] = "data added"
         format.html { after_create_path }
       else
         flash[:errors] = @item.errors.full_messages

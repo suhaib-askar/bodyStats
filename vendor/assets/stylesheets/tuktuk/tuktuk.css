@@ -393,8 +393,9 @@ table th,table td.highlight{font-weight:bold}
 .on-left{float:left}
 .on-right{float:right}
 .block{display:block}
-.inline{display:inline-block}
+.inline{display:inline-block;}
 .none{display:none}
+.margin-auto { margin: 0 35%; }
 .margin-none{margin:0}
 .margin{margin:1em}
 .margin-left{margin-left:1em}

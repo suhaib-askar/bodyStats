@@ -1,68 +1,28 @@
-/ .boxed-group.track-data
-/   %h3=  @project.description
-/   .boxed-group-inner
-/     %br
-    
-/     /= high_chart("chart", @chart) 
-/     /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
-/     /= line_chart User.group_by_day(:created_at).count
-/     /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
-/     / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
-/     = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
-/     /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
-/ .boxed-group.items-table
-/   %h3= link_to fl(@project.name), project_path(@project)
-/   .boxed-group-inner
-/     %br
-/     - unless @project.items.empty?
-/       %div.track-items-table
-/         - @project.items.each do |item|
-/           %div.track-cont
-/             = simple_form_for([@project, item, item.track_items.build]) do |f|
-/               %dl.form.track
-/                 %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false
-/                 %dd.dib= unit(item.unit_id)
-/     - else
-/       %h1 Create your project #{link_to 'items', project_items_path(@project)} ...
-
-
-
 %aside.column_3
   %header.bck.dark
     .session.on-left
       %strong
         logged in as
-        %a.color.theme{:href => "/"} soyjavi
-    %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
+        = link_to current_user.name, edit_user_registration_path, class: "color theme"
+    = link_to '', edit_user_registration_path, class: "on-right text big icon cog"
   %article.bck.light.scroll
     %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
     .margin-left.margin-right
-      %h4.text.bold.color.theme.inline Javi Jiménez
-      %span.margin-left.tag.bck.color.inline.text.bold pro
-      %a.block{:href => "#"}
-        %span.icon.twitter
-        soyjavi
-    %hr/
-    .margin{"data-tuktuk" => "buttons"}
-      %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
-      %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
-    %hr/
-    %ul.margin{"data-tuktuk" => "totals"}
-      %li
-        %strong 3609
-        %small followers
-      %li
-        %strong 138
-        %small following
-      %li
-        %strong 14
-        %small lists
+      %h4.text.bold.color.theme.inline= current_user.name
+      %span.margin-left.tag.bck.color.inline.text.bold owner
+      .block
+        %span.icon.user
+        = current_user.email
     %hr/
     .margin
-      %strong.text.big.normal.block
-        About
-        = link_to 'Orman Clark', root_url
-      .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      %strong.text.big.normal.block= fl(@project.name)
+      .display.block.text.justify.small= @project.description
+    %hr/
+    %ul.margin-auto{"data-tuktuk" => "totals"}
+      %li
+        %strong= current_user.projects.count
+        %small projects
+    %hr/
     %nav.text.bold{"data-tuktuk" => "menu"}
       %a.active{:href => "#"}
         %span.icon.user>
@@ -80,91 +40,36 @@
         %span.icon.star>
         Debuts
         %small (160)
-%aside#menu.absolute.bck.light.column_3
-  %header.bck.theme
-    %strong TukTuk Application
-    %a.on-right.text.big.icon.cog{"data-tuktuk-box" => "menu", :href => "#"}
-  %article.bck.dark.scroll
-    %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
-    .margin-left.margin-right
-      %h4.text.bold.color.theme.inline Javi Jiménez
-      %span.margin-left.tag.bck.theme.inline.text.bold pro
-      %a.block{:href => "#"}
-        %span.icon.twitter
-        soyjavi
-    %hr/
-    .margin{"data-tuktuk" => "buttons"}
-      %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
-      %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
-    %hr/
-    %ul.margin{"data-tuktuk" => "totals"}
-      %li
-        %strong 3609
-        %small followers
-      %li
-        %strong 138
-        %small following
-      %li
-        %strong 14
-        %small lists
-    %hr/
-    .margin
-      %strong.text.big.normal.block
-        About
-        %a{:href => "#"} Orman Clark
-      .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    %nav.text.bold{"data-tuktuk" => "menu"}
-      %a.active{:href => "#"}
-        %span.icon.user>
-        Shots
-        %small (100)
-      %a{:href => "#"}
-        %span.icon.heart>
-        Trending
-        %small (3)
-      %a{:href => "#"}
-        %span.icon.group>
-        Following
-        %small (192)
-      %a{:href => "#"}
-        %span.icon.star>
-        Debuts
-        %small (160)
-  %footer.bck.dark.text.center
-    Handcrafted by
-    %a.color.theme.text.bold{:href => "http://tapquo.com"} tapquo
 %section
   %header
     %h3.on-left.text.thin
-      Web Application
-      %span.tag.bck.theme NEW!
+      = link_to fl(@project.name), project_path(@project)
+      %span.tag.bck.theme Project
     %nav.on-right
-      %button.tiny tiny
-      %button.small small
-      %button normal
+      = @project.description
   %article.padding.scroll
     .margin-bottom
       %h4.text.book.inline
-        %span.icon.star.color.theme
-        Featured
-      %nav.inline.on-right
-        %a.button.small{:href => "#"}
-          %span.icon.search>
-          Search
-        %a.button.theme.small{:href => "#"}
-          %span.icon.envelope>
-          Send
+        %span.icon.list-alt.color.theme
+        Chart data
     .inline
-      .column_4.thumb.bck.light thumb
-      .column_4.thumb.bck.light thumb
+      /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
+      /= line_chart User.group_by_day(:created_at).count
+      = line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
+      /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
+      / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
+      / = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
+      /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
+      /= high_chart("chart", @chart)
+      
+      /= debug User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
+      = Time.now.beginning_of_day
+      /= Time.now.to_date - 5.day
+      /= Time.now.methods 
     .margin-bottom
       %h4.text.book.inline
-        %span.icon.group.color.theme
-        Friends
-      %nav.inline.on-right
-        %a.button.small{:href => "#"}
-          %span.icon.search>
-          Search
+        %span.icon.list.color.theme
+        More details
     .inline
       .column_2.thumb.bck.light thumb
       .column_2.thumb.bck.light thumb
@@ -191,42 +96,36 @@
       .column_2.thumb.bck.light thumb
   %footer.bck.light
     %nav.on-left.text.bold{"data-tuktuk" => "menu"}
-      %a.active{:href => "#"}
+      = link_to '#', class: "active" do
         Shots
         %small (100)
-      %a{:href => "#"}
+      = link_to '#' do
         Projects
         %small (3)
-      %a{:href => "#"}
+      = link_to '#' do
         Likes
         %small (192)
-      %a{:href => "#"}
+      = link_to '#' do
         Tags
         %small (160)
     %nav.on-right
-      %button.tiny tiny
-      %button.small small
-      %button normal
-#modal.column_5{"data-tuktuk" => "modal"}
+%aside.column_3
   %header
-    %h4.text.book.inline Normal window
-    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-  %article
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
-%aside.column_4
-  %header
-    %h4.inline.text.book Side window.
-    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-  %article.form
-    %label example of input
-    %input{:type => "text", :value => "text"}/
-    %input.large{:type => "text", :value => "text"}/
-    %label Example of textarea
-    %textarea textarea
-    %textarea.large textarea
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
+    %h4.inline.text.book Enter your data
+  %article.form.scroll
+    - unless @project.items.empty?
+      %div.track-items-table
+        - @project.items.each do |item|
+          %div.track-cont
+            = simple_form_for([@project, item, item.track_items.build]) do |f|
+              %dl.form.track
+                %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false
+                %dd.dib= unit(item.unit_id)
+    - else
+      %h1 Create your project #{link_to 'items', project_items_path(@project)} ...
   %footer
-    %button{"data-modal" => "close"} Save
+    %b Confirm with enter
+
 :javascript
   TukTuk.Modal.loading();
   setTimeout( TukTuk.Modal.hide, 1000);

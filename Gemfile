@@ -41,8 +41,8 @@ gem 'friendly_id', '~> 5.0.4'
 gem 'babosa', '~> 0.3.11'
 
 gem 'lazy_high_charts', '~> 1.5.4'
-gem 'chartkick', '~> 1.3.2'
-gem 'groupdate', '~> 2.2.1'
+#gem 'chartkick', '~> 1.3.2'
+#gem 'groupdate', '~> 2.2.1'
 
 gem 'gon', '~> 5.1.2'
 group :development, :test do

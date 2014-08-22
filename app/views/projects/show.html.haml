@@ -55,17 +55,21 @@
     .inline
       /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
       /= line_chart User.group_by_day(:created_at).count
-      = line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
+      
+      /= line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
+      
       /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
       / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
       / = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
       /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
-      /= high_chart("chart", @chart)
-      
+      /= high_chart("charts", @chart)
       /= debug User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
-      = Time.now.beginning_of_day
+      /= Time.now.beginning_of_day
       /= Time.now.to_date - 5.day
       /= Time.now.methods 
+
+      = high_stock('my', @stock)
+      /%div.stock{style: "width: 600px;"}
     .margin-bottom
       %h4.text.book.inline
         %span.icon.list.color.theme

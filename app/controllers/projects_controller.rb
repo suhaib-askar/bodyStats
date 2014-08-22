@@ -25,82 +25,86 @@ class ProjectsController < ApplicationController
     #   f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
     #   f.chart({:defaultSeriesType=>"column"})
     # end
-    @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(text: fl(@project.name))
-      f.subtitle(text: @project.description)
-      @project.items.each do |i|
-        f.series( name: i.name, data: i.track_items.map { |ti| ti.user_data }) 
+    # @chart = LazyHighCharts::HighChart.new('graph') do |f|
+    #   f.title(text: fl(@project.name))
+    #   f.subtitle(text: @project.description)
+    #   @project.items.each do |i|
+    #     f.series( name: i.name, data: i.track_items.map { |ti| ti.user_data }) 
+    #   end
+    #   f.xAxis(type: "datetime")
+    #   f.yAxis({ 
+    #     title: { text: "Performance" } 
+    #     })
+    #   f.plotOptions({
+    #       line: {
+    #         dataLabels: { enabled: true },
+    #         enableMouseTracking: true
+    #       }
+    #     })
+    #   f.chart({ defaultSeriesType: "line" })
+    # end
+
+    # @chart = LazyHighCharts::HighChart.new('column') do |f|
+    #        f.series(:name=>'Correct',:data=> [1, 2, 3, 4, 5])
+    #        f.series(:name=>'Incorrect',:data=> [10, 2, 3, 1, 4] )       
+    #        f.title({ :text=>"clickable bar chart"})
+    #        f.legend({:align => 'right', 
+    #                 :x => -100, 
+    #                 :verticalAlign=>'top',
+    #                 :y=>20,
+    #                 :floating=>"true",
+    #                 :backgroundColor=>'#FFFFFF',
+    #                 :borderColor=>'#CCC',
+    #                 :borderWidth=>1,
+    #                 :shadow=>"false"
+    #                 })
+    #        f.options[:chart][:defaultSeriesType] = "column"
+    #        f.options[:xAxis] = {:plot_bands => "none", :title=>{:text=>"Time"}, :categories => ["1.1.2011", "2.1.2011", "3.1.2011", "4.1.2011", "5.1.2011"]}
+    #        f.options[:yAxis][:title] = {:text=>"Answers"}
+    #        f.options[:plot_options][:column] = {:stacking=>'normal', 
+    #           :cursor => 'pointer',
+    #           :point => {:events => {:click => "myAlert"}}
+    #        }  
+    #     end
+    
+    # data = Net::HTTP.get(URI.parse("http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?"))
+  
+    @stock = LazyHighCharts::HighChart.new('stock') do |f|
+      f.rangeSelector(selected: 1, inputEnabled: true)
+      f.title( text: fl(@project.name))
+      @project.items.each do |i| 
+        @data = i.track_items.map {|tr| [tr.created_at.to_i * 1000, tr.user_data] }
+        f.series(name: i.name, 
+                  data: @data,
+                  tooltip: { valueDecimals: 2},
+                  marker: { enabled: true, radius: 3},
+                  shadow: true)
       end
-      f.xAxis(type: "datetime")
-      f.yAxis({ 
-        title: { text: "Performance" } 
-        })
-      f.plotOptions({
-          line: {
-            dataLabels: { enabled: true },
-            enableMouseTracking: true
-          }
-        })
-      f.chart({ defaultSeriesType: "line" })
+      f.legend(enabled: true)
+      f.plotOptions(spline: { turboThreshold: 2000})
+      f.credits(enabled: false)
     end
 
-    # @chart = LazyHighCharts::HighChart.new('graph') do |f|
-    #   f.data({csv: "csv"})
-    #   f.title(text: "lala")
-    #   f.subtitle(text: "la")
-    #   f.xAxis({
-    #     type: 'datetime',
-    #     tickInterval: 7*24*3600*1000,
-    #     tickWidth: 0,
-    #     gridLineWidth: 1,
-    #     labels: { align: 'left', x: 3, y: -3 }
-    #     })
-    #   f.yAxis [{
-    #       title: { text: nil },
-    #       labels: {
-    #         align: 'left',
-    #         x: 3,
-    #         y: 16,
-    #         format: '{value:.,0f}'
-    #       },
-    #       showFirstLabel: false  
-    #     }, 
-    #     {
-    #       linkedTo: 0,
-    #       gridLineWidth: 0,
-    #       opposite: true,
-    #       title: { text: nil },
-    #       labels: {
-    #         align: 'right',
-    #         x: -3,
-    #         y: 16,
-    #         format: '{value:.,0f}'
-    #       },
-    #       showFirstLabel: false
-    #     }]
-    #     f.legend({
-    #       align: 'left',
-    #       verticalAlign: 'top',
-    #       y: 20,
-    #       floating: true,
-    #       borderWidth: 0  
-    #     })
-    #     f.tooltip({
-    #       shared: true,
-    #       crosshairs: true
-    #     })
-    #     f.plotOptions({
-    #       series: {
-    #         cursor: 'pointer',
-    #         marker: { lineWidth: 1 }
-    #       }  
-    #     })
-    #     f.series({
-    #       name: 'All visits',
-    #       lineWidth: 4,
-    #       marker: { radius: 4 }  
-    #     })
-    # end
+    # $('#container').highcharts('StockChart', {
+
+
+    #         rangeSelector : {
+    #             selected : 1,
+    #             inputEnabled: $('#container').width() > 480
+    #         },
+
+    #         title : {
+    #             text : 'AAPL Stock Price'
+    #         },
+
+    #         series : [{
+    #             name : 'AAPL',
+    #             data : data,
+    #             tooltip: {
+    #                 valueDecimals: 2
+    #             }
+    #         }]
+    #     });
   end
  
   def create

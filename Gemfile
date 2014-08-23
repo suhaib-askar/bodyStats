@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '1.9.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.1'
 gem 'jquery-textchange-rails'
+gem 'jquery-cookie-rails', '~> 1.3.1.1'
 # gem 'rack-pjax', '~> 0.7.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -43,7 +44,7 @@ gem 'babosa', '~> 0.3.11'
 gem 'lazy_high_charts', '~> 1.5.4'
 #gem 'chartkick', '~> 1.3.2'
 #gem 'groupdate', '~> 2.2.1'
-
+  
 gem 'gon', '~> 5.1.2'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'

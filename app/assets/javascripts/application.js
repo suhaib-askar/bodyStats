@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.cookie
 //= require jquery.textchange
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
 
-//= require highcharts/highcharts-more
 //= require highcharts/highstock
 //= require tuktuk/tuktuk

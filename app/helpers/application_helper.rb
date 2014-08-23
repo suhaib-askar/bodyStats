@@ -34,4 +34,8 @@ module ApplicationHelper
   def my(render)
     render unless @no_header_footer
   end
+
+  def unit(unit_id)
+    Unit.find(unit_id).send("short_#{I18n.locale}")
+  end
 end

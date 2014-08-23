@@ -1,12 +1,13 @@
-%aside.column_3
-  %header.bck.dark
+%aside.column_3.aside-left
+  /= link_to '', '#', class: "icon left-sign left-hide hide-button"
+  %header.bck.light
     .session.on-left
       %strong
         logged in as
         = link_to current_user.name, edit_user_registration_path, class: "color theme"
     = link_to '', edit_user_registration_path, class: "on-right text big icon cog"
   %article.bck.light.scroll
-    %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
+    = image_tag('http://www.havingtime.com/wp-content/uploads/2012/09/Don%E2%80%99t-give-up-e1349045134143.jpg', class: "responsive")
     .margin-left.margin-right
       %h4.text.bold.color.theme.inline= current_user.name
       %span.margin-left.tag.bck.color.inline.text.bold owner
@@ -18,15 +19,10 @@
       %strong.text.big.normal.block= fl(@project.name)
       .display.block.text.justify.small= @project.description
     %hr/
-    %ul.margin-auto{"data-tuktuk" => "totals"}
-      %li
-        %strong= current_user.projects.count
-        %small projects
-    %hr/
     %nav.text.bold{"data-tuktuk" => "menu"}
       %a.active{:href => "#"}
         %span.icon.user>
-        Shots
+        Photos
         %small (100)
       %a{:href => "#"}
         %span.icon.heart>
@@ -38,16 +34,16 @@
         %small (192)
       %a{:href => "#"}
         %span.icon.star>
-        Debuts
-        %small (160)
+        Projects
+        %small (160)    
 %section
-  %header
+  %header.bck.dark
     %h3.on-left.text.thin
       = link_to fl(@project.name), project_path(@project)
       %span.tag.bck.theme Project
     %nav.on-right
       = @project.description
-  %article.padding.scroll
+  %article.scroll.padding{style:"display: block"}
     .margin-bottom
       %h4.text.book.inline
         %span.icon.list-alt.color.theme
@@ -68,8 +64,8 @@
       /= Time.now.to_date - 5.day
       /= Time.now.methods 
 
-      = high_stock('my', @stock)
-      /%div.stock{style: "width: 600px;"}
+      = high_stock('project_stock', @stock)
+      #project_stock
     .margin-bottom
       %h4.text.book.inline
         %span.icon.list.color.theme
@@ -98,8 +94,10 @@
       .column_2.thumb.bck.light thumb
       .column_2.thumb.bck.light thumb
       .column_2.thumb.bck.light thumb
-  %footer.bck.light
-    %nav.on-left.text.bold{"data-tuktuk" => "menu"}
+  %footer.bck.dark{style: "padding: 0; margin: 0"}
+    = link_to '', '#', class: "glyphicon glyphicon-chevron-left on-left bck dark b-hide b-left"
+    = link_to '', '#', class: "glyphicon glyphicon-chevron-right on-right bck dark hid b-hide b-right"
+    %nav.on-left.text.bold{"data-tuktuk" => "menu", style: "margin-left: 50px"}
       = link_to '#', class: "active" do
         Shots
         %small (100)
@@ -112,9 +110,10 @@
       = link_to '#' do
         Tags
         %small (160)
-    %nav.on-right
-%aside.column_3
-  %header
+%aside.column_3.aside-right{style: "float: right"}
+  /= link_to '', '#', class: "icon right-sign right-hide hide-button"
+  %header.bck.light
+    = link_to '', project_items_path(@project), class: "on-right text big icon cog"
     %h4.inline.text.book Enter your data
   %article.form.scroll
     - unless @project.items.empty?
@@ -127,12 +126,8 @@
                 %dd.dib= unit(item.unit_id)
     - else
       %h1 Create your project #{link_to 'items', project_items_path(@project)} ...
-  %footer
-    %b Confirm with enter
-
-:javascript
-  TukTuk.Modal.loading();
-  setTimeout( TukTuk.Modal.hide, 1000);
+  / %footer
+  /   %b Confirm with enter
 
 :css
   body { overflow: hidden; }
@@ -144,4 +139,3 @@
   [data-tuktuk="modal"].side{display:-moz-box;}
   .flexbox { display:-moz-box;}
   [data-tuktuk=boxes] > aside > div{display:-moz-box;}
-  

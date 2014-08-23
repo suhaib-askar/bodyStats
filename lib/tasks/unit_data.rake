@@ -1,3 +1,4 @@
+# encoding: UTF-8
 namespace :db do
   desc "Fill unit table with data"
   task unit: :environment do

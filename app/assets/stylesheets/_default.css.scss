@@ -1253,3 +1253,77 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
 .asside-hide {
   display: none !important;
 }
+
+.activity {
+  margin-bottom: 1em;
+  padding-left: 55px;
+  position: relative;
+  //.track-data { font-size: 15px; }
+  a { color: #4bc613 !important; }
+  .mega-icon{
+    position: absolute;
+    top: 14px;
+    left: 0;
+    width: 55px;
+    height: 35px;
+    padding: 3px;
+    color: #BBB;
+    background-position: center center;
+    background-size: 32px auto;
+    background-repeat: no-repeat;
+  }
+  .item-id {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  abbr.timeago{
+    border: none;
+    cursor: default;
+    color: #BBB;
+    font-weight: normal;
+    font-size: 12px;
+  }
+  .body{
+    overflow: hidden;
+    padding: 0 0 1em 0;
+    .title {
+      padding: 0 0 .25em 0;
+      font-weight: bold;
+      font-size: 14px;
+      .deleted-item {
+        color: rgba(255,0,0, .5);
+        font-size: 16px;
+      }
+    }
+    .details{
+      .avatar {
+        border: 1px solid #D0D0D0;
+        padding: 2px;
+        background-color: white;
+        float: left;
+        line-height: 0;
+        margin-right: .7em;
+      }
+      .message{
+        display: inline;
+        color: #666;
+        font-size: 26px;
+        position: relative;
+        .delete-link {
+          color: rgba(187,187,187, .5) !important;
+          position: absolute;
+          left: 80px; top: 0px;
+          font-size: 30px;
+          &:hover {
+            color: rgba(255,0,0, .5) !important;
+          }
+        }
+        .removed {
+          color: rgba(255,0,0, .5);
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
+

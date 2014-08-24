@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   end
 
   def uniq_proj_for_user
-    if Project.exists? ["user_id = ? AND name = ? OR slug = ?", 
+    if Project.exists? ["user_id = ? AND (name = ? OR slug = ?)", 
                           user_id, 
                           name.mb_chars.downcase, 
                           normalize_friendly_id(name.mb_chars.downcase)

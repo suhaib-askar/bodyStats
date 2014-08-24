@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   
+  get 'activities/index'
+
   #get '/profile' => 'users#profile', as: 'profile'
 
   # devise_for :users, path: '', path_names: { 

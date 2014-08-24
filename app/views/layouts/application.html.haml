@@ -4,12 +4,14 @@
     %title= full_title yield :title
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_include_tag "highcharts/highcharts.js", "chartkick", 'data-turbolinks-track' => true
     = csrf_meta_tags
     = render 'layouts/shim'
   %body{ data: { tuktuk: @tuktuk } }
     = include_gon
+
     = my render('layouts/header')
     = print_errors
-    = yield                  
+    = yield      
     = my render('layouts/footer')
+    / нужно что бы скрипт был подключен в конце документа
+    = javascript_include_tag 'tuktuk/tuktuk', 'data-turbolinks-track' => true 

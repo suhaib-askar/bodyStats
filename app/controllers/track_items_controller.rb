@@ -1,13 +1,18 @@
 class TrackItemsController < ApplicationController
 
   before_action :authenticate_user!
-  # before_action :set_item, only: [:update, :destroy]
+  before_action :set_item, only: [:create, :update, :destroy]
 
   def create
-    @item = Item.find(params[:item_id])
-    @track_item = @item.track_items.build(track_item_params)
+    track_item = @item.track_items.build(track_item_params)
     respond_to do |format|
-      if @track_item.save
+      if track_item.save
+        track_item.create_activity :create, owner: current_user, params: {
+          info: { item_name: track_item.item.name, 
+                  user_data: track_item.user_data, 
+                  unit_id: track_item.item.unit_id,
+                  track_item_id: track_item.id } 
+        }
         format.html { after_create_path }
       else
         flash[:errors] = @item.errors.full_messages
@@ -28,8 +33,16 @@ class TrackItemsController < ApplicationController
   end
 
   def destroy
-    # @item.destroy
-    # redirect_to project_items_url 
+    track_item = @item.track_items.find(params[:id])
+    track_item.create_activity :destroy, owner: current_user, params: {
+      info: { deleted_track_item_id: track_item.id }
+    }
+    respond_to do |format|
+      if track_item.destroy
+        format.html { after_destroy_path }
+        format.js
+      end
+    end
   end
 
   private
@@ -42,8 +55,12 @@ class TrackItemsController < ApplicationController
       after_create_path
     end
 
-    def set_track_item
-      @track_item = TrackItem.find(params[:id])
+    def after_destroy_path
+      after_create_path
+    end
+
+    def set_item
+      @item = Item.find(params[:item_id])
     end
 
     def track_item_params

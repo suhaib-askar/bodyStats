@@ -1,3 +1,14 @@
+%aside#menu.absolute.bck.light.column_5
+  %header.bck.light
+    .session.on-left
+      %strong
+        Project Activities
+    %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
+  %article.bck.dark.scroll
+    .margin
+      - @activities.each do |activity|
+        = render_activity activity, layout: "layouts/activity_wrapper"
+
 %aside.column_3.aside-left
   /= link_to '', '#', class: "icon left-sign left-hide hide-button"
   %header.bck.light
@@ -35,7 +46,13 @@
       %a{:href => "#"}
         %span.icon.star>
         Projects
-        %small (160)    
+        %small (160) 
+    %hr/
+    .margin
+      %strong.text.big.normal.block Activities
+    .margin{"data-tuktuk" => "buttons"}
+      %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-box"=>"menu"} Modal
+      %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
 %section
   %header.bck.dark
     %h3.on-left.text.thin
@@ -63,7 +80,8 @@
       /= Time.now.beginning_of_day
       /= Time.now.to_date - 5.day
       /= Time.now.methods 
-
+      /= debug @activities
+      
       = high_stock('project_stock', @stock)
       #project_stock
     .margin-bottom
@@ -71,23 +89,6 @@
         %span.icon.list.color.theme
         More details
     .inline
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
       .column_2.thumb.bck.light thumb
       .column_2.thumb.bck.light thumb
       .column_2.thumb.bck.light thumb
@@ -110,6 +111,7 @@
       = link_to '#' do
         Tags
         %small (160)
+
 %aside.column_3.aside-right{style: "float: right"}
   /= link_to '', '#', class: "icon right-sign right-hide hide-button"
   %header.bck.light
@@ -129,6 +131,44 @@
   / %footer
   /   %b Confirm with enter
 
+  %footer
+    %button{"data-modal" => "close"} Save
+
+
+
+#modal.column_5{"data-tuktuk" => "modal"}
+  %header
+    %h4.text.book.inline Normal window
+    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
+  %article
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
+    
+#modal-right.side.column_5{"data-tuktuk" => "modal"}
+  %header
+    %h4.inline.text.book Side window.
+    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
+  %article.form
+    %label example of input
+    %input{:type => "text", :value => "text"}/
+    %input.large{:type => "text", :value => "text"}/
+    %label Example of textarea
+    %textarea textarea
+    %textarea.large textarea
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
 :css
   body { overflow: hidden; }
   [data-tuktuk=boxes]{display:-moz-box;}
@@ -139,3 +179,6 @@
   [data-tuktuk="modal"].side{display:-moz-box;}
   .flexbox { display:-moz-box;}
   [data-tuktuk=boxes] > aside > div{display:-moz-box;}
+
+  
+

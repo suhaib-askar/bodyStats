@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
+    @activities = PublicActivity::Activity.order("created_at desc").where(owner: current_user)
     # data = Net::HTTP.get(URI.parse("http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?"))
   
     @stock = LazyHighCharts::HighChart.new('stock') do |f|

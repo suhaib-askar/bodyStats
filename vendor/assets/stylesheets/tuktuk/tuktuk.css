@@ -22,22 +22,22 @@
 [data-tuktuk=boxes] > aside .session,[data-tuktuk=boxes] > section .session{height:inherit;}
 [data-tuktuk=boxes] > aside .session > *,[data-tuktuk=boxes] > section .session > *{display:inline-block;float:left}
 
-/*.tuk-button,button{position:relative;display:inline-block;border:none;cursor:pointer;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:2.5em;text-align:center;text-decoration:none;outline:none;background:none;-webkit-transition:background-color 400ms;-moz-transition:background-color 400ms;-ms-transition:background-color 400ms;-o-transition:background-color 400ms;transition:background-color 400ms;}
-.tuk-button.icon,button.icon{padding:0 .65em}
-.tuk-button:not(.icon),button:not(.icon){padding:0 1em;}
-.tuk-button:not(.icon) .icon,button:not(.icon) .icon,.button:not(.icon) .loading,button:not(.icon) .loading{margin-right:.25em}
-.tuk-button.large,button.large{font-size:1.4em}
-.tuk-button.small,button.small{font-size:.9em}
-.tuk-button.tiny,button.tiny{font-size:.8em;line-height:2em;padding:0 .6em}
-.tuk-button.anchor,button.anchor{width:100%;}
-.tuk-button.anchor:not(.icon) .icon,button.anchor:not(.icon) .icon{position:absolute;left:1em}
-.tuk-button.disabled,button.disabled,.button:disabled,button:disabled{cursor:default}
-.tuk-button[data-loading] > .icon,button[data-loading] > .icon{display:none}
-.tuk-button[data-loading] > .loading,button[data-loading] > .loading{display:inline-block;}
-.tuk-button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{-webkit-animation:loading 600ms infinite linear;-moz-animation:loading 600ms infinite linear;-ms-animation:loading 600ms infinite linear;-o-animation:loading 600ms infinite linear;animation:loading 600ms infinite linear}
-.tuk-button[data-loading] > .loading,button[data-loading] > .loading{position:relative;top:.2em;font-size:1.25em;}
-.tuk-button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{height:1em;width:1em;}
-.tuk-button[data-loading] > .loading > .container > span,button[data-loading] > .loading > .container > span,.button[data-loading] > .loading > .container > span::before,button[data-loading] > .loading > .container > span::before,.button[data-loading] > .loading > .container > span::after,button[data-loading] > .loading > .container > span::after{width:.075em;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0}
+/*.button,button{position:relative;display:inline-block;border:none;cursor:pointer;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:2.5em;text-align:center;text-decoration:none;outline:none;background:none;-webkit-transition:background-color 400ms;-moz-transition:background-color 400ms;-ms-transition:background-color 400ms;-o-transition:background-color 400ms;transition:background-color 400ms;}
+.button.icon,button.icon{padding:0 .65em}
+.button:not(.icon),button:not(.icon){padding:0 1em;}
+.button:not(.icon) .icon,button:not(.icon) .icon,.button:not(.icon) .loading,button:not(.icon) .loading{margin-right:.25em}
+.button.large,button.large{font-size:1.4em}
+.button.small,button.small{font-size:.9em}
+.button.tiny,button.tiny{font-size:.8em;line-height:2em;padding:0 .6em}
+.button.anchor,button.anchor{width:100%;}
+.button.anchor:not(.icon) .icon,button.anchor:not(.icon) .icon{position:absolute;left:1em}
+.button.disabled,button.disabled,.button:disabled,button:disabled{cursor:default}
+.button[data-loading] > .icon,button[data-loading] > .icon{display:none}
+.button[data-loading] > .loading,button[data-loading] > .loading{display:inline-block;}
+.button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{-webkit-animation:loading 600ms infinite linear;-moz-animation:loading 600ms infinite linear;-ms-animation:loading 600ms infinite linear;-o-animation:loading 600ms infinite linear;animation:loading 600ms infinite linear}
+.button[data-loading] > .loading,button[data-loading] > .loading{position:relative;top:.2em;font-size:1.25em;}
+.button[data-loading] > .loading > .container,button[data-loading] > .loading > .container{height:1em;width:1em;}
+.button[data-loading] > .loading > .container > span,button[data-loading] > .loading > .container > span,.button[data-loading] > .loading > .container > span::before,button[data-loading] > .loading > .container > span::before,.button[data-loading] > .loading > .container > span::after,button[data-loading] > .loading > .container > span::after{width:.075em;-webkit-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0}
 */
 .flexbox{display:-webkit-box;display:-moz-box;display:-ms-box;display:-o-box;display:box;}
 .flexbox.y{-webkit-box-orient:vertical;-moz-box-orient:vertical;-ms-box-orient:vertical;-o-box-orient:vertical;box-orient:vertical;}

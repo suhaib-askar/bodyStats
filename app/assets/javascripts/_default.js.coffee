@@ -1,4 +1,8 @@
 $(document).on "page:change", ->
+  # анимация загрузки страницы
+  TukTuk.Modal.loading();
+  setTimeout( TukTuk.Modal.hide, 1000);
+
   # меню, выбор активного пункта
   url = window.location.href
   $('.section-nav a').each ->
@@ -44,22 +48,23 @@ $(document).on "page:change", ->
     res start_w, start_crt
   
   # клик на кнопки скрыть левый правый блоки
-  $('.b-hide').on 'click', (e) ->
-    e.preventDefault()
+  $('.b-hide').off().on 'click', (e) ->
     if $(this).hasClass('b-left')
       $('.aside-left').toggleClass("asside-hide")
-      if $('.aside-left').is('.asside-hide')
+      if $('aside#menu').hasClass('active')
+        TukTuk.Box.hide()
+      if $('.aside-left').hasClass('asside-hide')
         $.cookie('aside-left', false)
       else
         $.cookie('aside-left', null)
     else
       $('.aside-right').toggleClass("asside-hide")
-      if $('.aside-right').is('.asside-hide')
+      if $('.aside-right').hasClass('asside-hide')
         $.cookie('aside-right', false)
       else
         $.cookie('aside-right', null)
     $(this).toggleClass ->
-      if $(this).is('.glyphicon-chevron-left')
+      if $(this).hasClass('glyphicon-chevron-left')
         $(this).removeClass('glyphicon-chevron-left')
         'glyphicon-chevron-right'
       else
@@ -68,7 +73,7 @@ $(document).on "page:change", ->
     [1..8].forEach -> 
       $(window).trigger 'resize'
     $.cookie('crt-wdt', $('section > article').width())
-
+    e.preventDefault()
 
   
   

@@ -8,7 +8,8 @@
     .margin
       - @activities.each do |activity|
         = render_activity activity, layout: "layouts/activity_wrapper"
-
+        %hr/
+      
 %aside.column_3.aside-left
   /= link_to '', '#', class: "icon left-sign left-hide hide-button"
   %header.bck.light
@@ -47,12 +48,27 @@
         %span.icon.star>
         Projects
         %small (160) 
-    %hr/
-    .margin
-      %strong.text.big.normal.block Activities
-    .margin{"data-tuktuk" => "buttons"}
-      %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-box"=>"menu"} Modal
-      %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
+    - if @last
+      %hr/
+      .margin
+        %strong.text.big.normal.block 
+          %span.glyphicon.glyphicon-bell 
+          Latest Activity
+        .margin
+          .latest-activity
+            .time= activity_time(@last, type: :short)
+            %abbr.owner= @last.item.project.user.name
+            added
+            %abbr.user-data
+              = @last.user_data 
+              = unit(@last.item.unit_id)
+            to 
+            %abbr.item-name= fl(@last.item.name)
+          .margin{"data-tuktuk" => "buttons"}
+            %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
+            
+
+            /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
 %section
   %header.bck.dark
     %h3.on-left.text.thin
@@ -81,7 +97,7 @@
       /= Time.now.to_date - 5.day
       /= Time.now.methods 
       /= debug @activities
-      
+
       = high_stock('project_stock', @stock)
       #project_stock
     .margin-bottom
@@ -131,42 +147,26 @@
   / %footer
   /   %b Confirm with enter
 
-  %footer
-    %button{"data-modal" => "close"} Save
 
-
-
-#modal.column_5{"data-tuktuk" => "modal"}
-  %header
-    %h4.text.book.inline Normal window
-    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-  %article
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
+/ #modal.column_5{"data-tuktuk" => "modal"}
+/   %header
+/     %h4.text.book.inline Normal window
+/     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
+/   %article
+/     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
     
-#modal-right.side.column_5{"data-tuktuk" => "modal"}
-  %header
-    %h4.inline.text.book Side window.
-    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-  %article.form
-    %label example of input
-    %input{:type => "text", :value => "text"}/
-    %input.large{:type => "text", :value => "text"}/
-    %label Example of textarea
-    %textarea textarea
-    %textarea.large textarea
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
-
-
-    
-
-
-
-
-
-
-
-
-
+/ #modal-right.side.column_5{"data-tuktuk" => "modal"}
+/   %header
+/     %h4.inline.text.book Side window.
+/     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
+/   %article.form
+/     %label example of input
+/     %input{:type => "text", :value => "text"}/
+/     %input.large{:type => "text", :value => "text"}/
+/     %label Example of textarea
+/     %textarea textarea
+/     %textarea.large textarea
+/     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
 
 
 :css

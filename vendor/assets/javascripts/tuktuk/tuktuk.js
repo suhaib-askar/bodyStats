@@ -73,7 +73,8 @@ Copyright (c) 2011-2014 Tapquo S.L. - Licensed GPLv3, Commercial
           modal = tk.dom(element);
           return modal.html("<div>" + modal.html() + "</div>");
         });
-        tk.dom("[data-tuktuk=boxes] [data-box=close]").on("click", function() {
+        tk.dom("[data-tuktuk=boxes] [data-box=close]").on("click", function(e) {
+          e.preventDefault()
           return TukTuk.Box.hide();
         });
         return tk.dom("[data-tuktuk-box]").on("click", function() {

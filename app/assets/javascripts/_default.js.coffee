@@ -51,8 +51,8 @@ $(document).on "page:change", ->
   $('.b-hide').off().on 'click', (e) ->
     if $(this).hasClass('b-left')
       $('.aside-left').toggleClass("asside-hide")
-      if $('aside#menu').hasClass('active')
-        TukTuk.Box.hide()
+      #if $('aside#menu').hasClass('active')
+      #  TukTuk.Box.hide()
       if $('.aside-left').hasClass('asside-hide')
         $.cookie('aside-left', false)
       else

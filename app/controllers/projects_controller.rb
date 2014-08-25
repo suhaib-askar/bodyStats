@@ -3,12 +3,18 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: [ :show, :edit, :update, :destroy ]
   before_action :no_header_footer!, only: [ :show ]
+  before_action :units, only: [ :show ]
+  
   def new
     @project = Project.new
   end
   
   def show
-    @activities = PublicActivity::Activity.order("created_at desc").where(owner: current_user)
+    # eagre loading, Nested
+    
+    @activities = PublicActivity::Activity.includes([{trackable: {item: {project: :user}}}, {owner: :user}, :trackable]).order("created_at desc").where(owner: @project, owner_type: "Project")
+    @last = @activities.map(&:trackable).compact[0]
+    # "DAYOFMONTH(created_at) = ? or MONTH(created_at) = ?"
     # data = Net::HTTP.get(URI.parse("http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?"))
   
     @stock = LazyHighCharts::HighChart.new('stock') do |f|
@@ -20,10 +26,10 @@ class ProjectsController < ApplicationController
                                 {type: 'year',count: 1,text: '1Y'}, 
                                 {type: 'all',count: 1,text: 'All'}])
       #f.title( text: fl(@project.name))
-      @project.items.each do |i|  
+      #Micropost.includes(:user).from_users_followed_by(self)
+      @project.items.includes(:track_items).each do |i|  
         data = i.track_items.map {|tr| [tr.created_at.to_i * 1000, tr.user_data] }
         visible = i != @project.items[0] ? false : true
-        compare = unit(i.unit_id)
         f.series(name: i.name, 
                   data: data,
                   tooltip: { valueDecimals: 2},
@@ -58,4 +64,7 @@ class ProjectsController < ApplicationController
       params.require(:project).permit(:name, :description)
     end
     
+    def units
+      @units = Unit.all.map { |u|  { u.id => {full_en: u.full_en, short_en: u.short_en, full_ru: u.full_ru, short_ru: u.short_ru} } } 
+    end
 end

@@ -22,7 +22,7 @@
 [data-tuktuk=boxes] > aside .session,[data-tuktuk=boxes] > section .session{height:inherit;}
 [data-tuktuk=boxes] > aside .session > *,[data-tuktuk=boxes] > section .session > *{display:inline-block;float:left}
 
-/*.button,button{position:relative;display:inline-block;border:none;cursor:pointer;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:2.5em;text-align:center;text-decoration:none;outline:none;background:none;-webkit-transition:background-color 400ms;-moz-transition:background-color 400ms;-ms-transition:background-color 400ms;-o-transition:background-color 400ms;transition:background-color 400ms;}
+/*.tuk-button {position:relative;display:inline-block;border:none;cursor:pointer;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:2.5em;text-align:center;text-decoration:none;outline:none;background:none;-webkit-transition:background-color 400ms;-moz-transition:background-color 400ms;-ms-transition:background-color 400ms;-o-transition:background-color 400ms;transition:background-color 400ms;}
 .button.icon,button.icon{padding:0 .65em}
 .button:not(.icon),button:not(.icon){padding:0 1em;}
 .button:not(.icon) .icon,button:not(.icon) .icon,.button:not(.icon) .loading,button:not(.icon) .loading{margin-right:.25em}

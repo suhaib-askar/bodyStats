@@ -7,7 +7,7 @@ class TrackItemsController < ApplicationController
     track_item = @item.track_items.build(track_item_params)
     respond_to do |format|
       if track_item.save
-        track_item.create_activity :create, owner: current_user, params: {
+        track_item.create_activity :create, owner: @item.project, params: {
           info: { item_name: track_item.item.name, 
                   user_data: track_item.user_data, 
                   unit_id: track_item.item.unit_id,
@@ -34,7 +34,7 @@ class TrackItemsController < ApplicationController
 
   def destroy
     track_item = @item.track_items.find(params[:id])
-    track_item.create_activity :destroy, owner: current_user, params: {
+    track_item.create_activity :destroy, owner: @item.project, params: {
       info: { deleted_track_item_id: track_item.id }
     }
     respond_to do |format|

@@ -9,7 +9,7 @@ defined?(Footnotes) && Footnotes.setup do |f|
   # f.enabled = -> { User.current.admin? }
   # Beware of thread-safety though, Footnotes.enabled is NOT thread safe
   # and should not be modified anywhere else.
-  f.enabled = false
+  f.enabled = true
   # Only toggle some notes :
   f.notes = [:assigns, :session, :cookies, :params, :filters, :routes, :env, :queries, :log]
   f.notes += [:page_load]
@@ -20,7 +20,7 @@ defined?(Footnotes) && Footnotes.setup do |f|
   # f.no_style = true
 
   # Lock notes to top right :
-  # f.lock_top_right = true
+   f.lock_top_right = true
 
   # Change font size :
   # f.font_size = '11px'

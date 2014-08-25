@@ -36,6 +36,6 @@ module ApplicationHelper
   end
 
   def unit(unit_id)
-    Unit.find(unit_id).send("short_#{I18n.locale}")
+    @units.map {|u| u[unit_id]}.compact[0]["short_#{I18n.locale}".to_sym]
   end
 end

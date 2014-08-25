@@ -1,0 +1,16 @@
+.activity
+  .body
+    - unless p[:info][:track_item_id].nil?
+      .mega-icon.item-id
+        = "##{p[:info][:track_item_id]}"
+    - else 
+      .mega-icon{ style: "background-image: url(#{image_path "icons/#{a.key}.svg"}); width: 30px; height: 30px;"}
+    %abbr.timeago= activity_time(a)
+    .title
+      = link_to a.owner.user.name || a.owner.user.email, edit_user_registration_path if a.owner
+      = content_for :action
+      .details
+        .avatar
+          = gravatar_for(a.owner.user, size: 35)
+        .message
+          = yield

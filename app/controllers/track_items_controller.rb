@@ -1,7 +1,9 @@
 class TrackItemsController < ApplicationController
-
+  include ProjectsHelper
+  include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_item, only: [:create, :update, :destroy]
+  before_action :units, only: [ :create, :destroy ]
 
   def create
     track_item = @item.track_items.build(track_item_params)
@@ -14,6 +16,11 @@ class TrackItemsController < ApplicationController
                   track_item_id: track_item.id } 
         }
         format.html { after_create_path }
+        format.js do
+          @project = track_item.item.project
+          @activities = get_activities(@project)
+          @last = last_track_item(@activities)
+        end
       else
         flash[:errors] = @item.errors.full_messages
         format.html { after_create_path  }
@@ -35,12 +42,17 @@ class TrackItemsController < ApplicationController
   def destroy
     track_item = @item.track_items.find(params[:id])
     track_item.create_activity :destroy, owner: @item.project, params: {
-      info: { deleted_track_item_id: track_item.id }
-    }
+      info: { deleted_track_item_id: track_item.id }}
+    project = track_item.item.project
+    
     respond_to do |format|
       if track_item.destroy
         format.html { after_destroy_path }
-        format.js
+        format.js do
+          @project = project
+          @activities = get_activities(@project)
+          @last = last_track_item(@activities)
+        end
       end
     end
   end

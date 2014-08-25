@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'public_activity', '~> 1.4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.1'
+gem 'jquery-ui-rails', '~> 5.0.0'
 gem 'jquery-textchange-rails'
 gem 'jquery-cookie-rails', '~> 1.3.1.1'
 # gem 'rack-pjax', '~> 0.7.0'

@@ -2,7 +2,7 @@ class Item < ActiveRecord::Base
   before_save { self.name = name.mb_chars.downcase }
   belongs_to :project
   belongs_to :unit
-  has_many :track_items
+  has_many :track_items, dependent: :destroy
   
   validates :name, presence: true, length: { maximum: 30 }#, uniqueness: { scope: :project_id, case_sensitive: false, message: "already exists on this project" }
   validate :unit

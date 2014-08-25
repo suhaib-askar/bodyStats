@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   friendly_id :name, use: [ :scoped, :slugged, :finders ], scope: :user
   
   belongs_to :user
-  has_many :items
+  has_many :items, dependent: :destroy
   
 
 

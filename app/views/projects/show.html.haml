@@ -5,10 +5,8 @@
         Project Activities
     %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
   %article.bck.dark.scroll
-    .margin
-      - @activities.each do |activity|
-        = render_activity activity, layout: "layouts/activity_wrapper"
-        %hr/
+    .margin.activities
+      = render 'activities'
       
 %aside.column_3.aside-left
   /= link_to '', '#', class: "icon left-sign left-hide hide-button"
@@ -56,19 +54,10 @@
           Latest Activity
         .margin
           .latest-activity
-            .time= activity_time(@last, type: :short)
-            %abbr.owner= @last.item.project.user.name
-            added
-            %abbr.user-data
-              = @last.user_data 
-              = unit(@last.item.unit_id)
-            to 
-            %abbr.item-name= fl(@last.item.name)
-          .margin{"data-tuktuk" => "buttons"}
-            %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
-            
-
-            /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
+            = render 'latest_activity'
+        .margin{"data-tuktuk" => "buttons"}
+          %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
+          /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
 %section
   %header.bck.dark
     %h3.on-left.text.thin
@@ -77,40 +66,44 @@
     %nav.on-right
       = @project.description
   %article.scroll.padding{style:"display: block"}
-    .margin-bottom
-      %h4.text.book.inline
-        %span.icon.list-alt.color.theme
-        Chart data
-    .inline
-      /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
-      /= line_chart User.group_by_day(:created_at).count
-      
-      /= line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
-      
-      /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
-      / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
-      / = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
-      /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
-      /= high_chart("charts", @chart)
-      /= debug User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
-      /= Time.now.beginning_of_day
-      /= Time.now.to_date - 5.day
-      /= Time.now.methods 
-      /= debug @activities
-
-      = high_stock('project_stock', @stock)
-      #project_stock
-    .margin-bottom
-      %h4.text.book.inline
-        %span.icon.list.color.theme
-        More details
-    .inline
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
+    - if @project.items.present?  
+      .margin-bottom
+        %h4.text.book.inline
+          %span.icon.list-alt.color.theme
+          Chart data
+      .inline
+        .my-stock-chart
+          = render 'stock_chart'
+        /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
+        /= line_chart User.group_by_day(:created_at).count
+        
+        /= line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
+        
+        /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
+        / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
+        / = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
+        /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
+        /= high_chart("charts", @chart)
+        /= debug User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
+        /= Time.now.beginning_of_day
+        /= Time.now.to_date - 5.day
+        /= Time.now.methods 
+        /= debug @activities
+        /= high_stock('project_stock', @stock)
+      .margin-bottom
+        %h4.text.book.inline
+          %span.icon.list.color.theme
+          More details
+      .inline
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+    - else
+      .margin
+        %h1 CREATE YOUR PROJECT DATA
   %footer.bck.dark{style: "padding: 0; margin: 0"}
     = link_to '', '#', class: "glyphicon glyphicon-chevron-left on-left bck dark b-hide b-left"
     = link_to '', '#', class: "glyphicon glyphicon-chevron-right on-right bck dark hid b-hide b-right"
@@ -138,7 +131,7 @@
       %div.track-items-table
         - @project.items.each do |item|
           %div.track-cont
-            = simple_form_for([@project, item, item.track_items.build]) do |f|
+            = simple_form_for([@project, item, item.track_items.build], remote: true) do |f|
               %dl.form.track
                 %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false
                 %dd.dib= unit(item.unit_id)

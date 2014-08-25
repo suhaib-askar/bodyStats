@@ -1,0 +1,11 @@
+- single_content_for :action do
+  added new data to
+  = link_to fl(p[:info][:item_name]), '#'
+
+= p[:info][:user_data]
+= unit(p[:info][:unit_id])
+- if a.trackable
+  = link_to [a.trackable.item.project ,a.trackable.item, a.trackable], method: :delete, name: 'delete', data: { confirm: 'Are you sure?' }, remote: true, class: 'delete-link' do 
+    .glyphicon.glyphicon-ban-circle
+- else
+  %span.removed REMOVED

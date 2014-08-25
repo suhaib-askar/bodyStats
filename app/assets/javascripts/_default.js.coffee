@@ -3,6 +3,11 @@ $(document).on "page:change", ->
   TukTuk.Modal.loading();
   setTimeout( TukTuk.Modal.hide, 1000);
 
+  #$(".highcharts-background").resizable()
+  # hide right sidebar if none items
+  # if gon.hide_right_block
+  #   $('.aside-right').addClass("asside-hide")
+  #   $('.b-right').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left')
   # меню, выбор активного пункта
   url = window.location.href
   $('.section-nav a').each ->

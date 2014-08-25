@@ -38,4 +38,8 @@ module ApplicationHelper
   def unit(unit_id)
     @units.map {|u| u[unit_id]}.compact[0]["short_#{I18n.locale}".to_sym]
   end
+
+  def units
+    @units = Unit.all.map { |u|  { u.id => {full_en: u.full_en, short_en: u.short_en, full_ru: u.full_ru, short_ru: u.short_ru} } } 
+  end
 end

@@ -13,6 +13,9 @@ class ProjectsController < ApplicationController
   def show
     @activities = get_activities(@project)
     @last = last_track_item(@activities)
+
+    #@count_tr = TrackItem.where(item_id: @project.item_ids).count
+    #@count_tr = TrackItem.joins(item: :project).where(items: { project_id: @project }).count
     
     #gon.hide_right_block = true if @project.items.empty?
     # "DAYOFMONTH(created_at) = ? or MONTH(created_at) = ?"

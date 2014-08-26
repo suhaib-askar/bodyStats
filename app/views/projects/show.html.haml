@@ -29,23 +29,23 @@
       %strong.text.big.normal.block= fl(@project.name)
       .display.block.text.justify.small= @project.description
     %hr/
-    %nav.text.bold{"data-tuktuk" => "menu"}
-      %a.active{:href => "#"}
-        %span.icon.user>
-        Photos
-        %small (100)
-      %a{:href => "#"}
-        %span.icon.heart>
-        Trending
-        %small (3)
-      %a{:href => "#"}
-        %span.icon.group>
-        Following
-        %small (192)
-      %a{:href => "#"}
-        %span.icon.star>
+    %nav.text.bold{data:{tuktuk:"menu"}}
+      = link_to '#', class: 'active' do
+        %span.icon.user
         Projects
-        %small (160) 
+        %small (#{current_user.projects.count})
+      = link_to '#' do
+        %span.icon.heart
+        Items
+        %small (#{@project.items.count})
+      = link_to '#' do
+        %span.icon.group
+        Track Items
+        %small (#{@project.track_items.count})
+      = link_to '#' do
+        %span.icon.star
+        Images
+        %small (55)
     - if @last
       %hr/
       .margin
@@ -55,7 +55,7 @@
         .margin
           .latest-activity
             = render 'latest_activity'
-        .margin{"data-tuktuk" => "buttons"}
+        .margin
           %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
           /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
 %section
@@ -71,7 +71,7 @@
         %h4.text.book.inline
           %span.icon.list-alt.color.theme
           Chart data
-      .inline.my-stock-chart{ style: "width: 100%; height:300px; position: relative" }
+      .inline.my-stock-chart
         = render 'stock_chart'
 
         /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
@@ -90,11 +90,16 @@
         /= Time.now.methods 
         /= debug @activities
         /= high_stock('project_stock', @stock)
-      .margin-bottom
+        
+      .margin-bottom{style: "margin-top: 50px;"}
         %h4.text.book.inline
           %span.icon.list.color.theme
           More details
       .inline
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
+        .column_2.thumb.bck.light thumb
         .column_2.thumb.bck.light thumb
         .column_2.thumb.bck.light thumb
         .column_2.thumb.bck.light thumb

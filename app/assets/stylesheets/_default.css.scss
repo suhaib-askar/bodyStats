@@ -1341,12 +1341,15 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
     opacity: 0.5;
   }
   .user-data {
+    font-weight: bold;
     text-decoration: underline;
   }
   .item-name {
+    font-weight: bold;
     text-decoration: underline;
   }
   .owner {
+    font-weight: bold;
     text-decoration: underline;
   }
 
@@ -1364,6 +1367,7 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   width: 160px;
   font-family: inherit;
   font-size: inherit;
+  padding: 6px 12px;
   &:hover {
     color: #4bc613;
   }
@@ -1377,7 +1381,11 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   width:100%;
   position:absolute;
 }
-
+.my-stock-chart {
+  position: relative; 
+  //height: 350px;
+  width: 100%;
+}
 .chart-butt {
   width: 75px;
   padding: 3px 5px;

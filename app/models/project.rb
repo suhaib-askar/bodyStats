@@ -34,4 +34,8 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def track_items
+    TrackItem.joins(item: :project).where(items: { project_id: id })
+  end
+
 end

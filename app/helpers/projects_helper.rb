@@ -9,7 +9,6 @@ module ProjectsHelper
                                 {type: 'month',count: 6,text: '6M'}, 
                                 {type: 'year',count: 1,text: '1Y'}, 
                                 {type: 'all',count: 1,text: 'All'}])
-      #f.title( text: fl(@project.name))
       project.items.includes(:track_items).each do |i|  
         data = i.track_items.map {|tr| [tr.created_at.to_i * 1000, tr.user_data] }
         visible = i != project.items[0] ? false : true

@@ -65,15 +65,15 @@
       %span.tag.bck.theme Project
     %nav.on-right
       = @project.description
-  %article.scroll.padding{style:"display: block"}
+  %article.scroll.padding
     - if @project.items.present?  
       .margin-bottom
         %h4.text.book.inline
           %span.icon.list-alt.color.theme
           Chart data
-      .inline
-        .my-stock-chart
-          = render 'stock_chart'
+      .inline.my-stock-chart{ style: "width: 100%; height:300px; position: relative" }
+        = render 'stock_chart'
+
         /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
         /= line_chart User.group_by_day(:created_at).count
         

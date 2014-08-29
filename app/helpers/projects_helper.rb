@@ -28,7 +28,7 @@ module ProjectsHelper
   def get_activities(project=@project)
     PublicActivity::Activity.includes([
       {trackable: {item: {project: :user}}}, {owner: :user}, :trackable
-    ]).order("created_at desc").where(owner: project, owner_type: "Project")
+    ]).order("created_at desc").where(owner: project, owner_type: "Project").limit(20)
   end
 
   def last_track_item(activities)

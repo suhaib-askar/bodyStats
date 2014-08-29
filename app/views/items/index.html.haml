@@ -29,4 +29,4 @@
                       %dd= f.association :unit, label_method: unit_meth, prompt: false, value_method: :id, label: false, input_html: { class: "form-control track-item-combo" }
                 = button_to 'X', [@project, item], method: :delete, :name => 'delete', data: { confirm: 'Вы уверены?' }, class: "track-item-delete button danger"
         - else 
-          %h2{ style: "text-align: center" } Tracking list is empty.
+          %h2{ style: "text-align: center; padding-bottom: 20px;" } Tracking list is empty

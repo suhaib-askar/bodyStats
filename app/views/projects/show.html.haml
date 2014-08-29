@@ -9,7 +9,6 @@
       = render 'activities'
       
 %aside.column_3.aside-left
-  /= link_to '', '#', class: "icon left-sign left-hide hide-button"
   %header.bck.light
     .session.on-left
       %strong
@@ -42,7 +41,6 @@
           = render 'latest_activity'
       .margin
         %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
-        /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal"} Aside  
 %section
   %header.bck.dark
     %h3.on-left.text.thin
@@ -58,23 +56,6 @@
           .chart-toggle{style: "display: inline-block"} Chart data
       .inline.my-stock-chart
         = render 'stock_chart'
-
-        /= line_chart(@project.items[0].track_items.map { |tr| tr.user_data }) 
-        /= line_chart User.group_by_day(:created_at).count
-        
-        /= line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
-        
-        /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
-        / {i.track_items.map {|tr| "#{tr.createmd_at} => #{tr.user_data}" } }
-        / = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
-        /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
-        /= high_chart("charts", @chart)
-        /= debug User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
-        /= Time.now.beginning_of_day
-        /= Time.now.to_date - 5.day
-        /= Time.now.methods 
-        /= debug @activities
-        /= high_stock('project_stock', @stock)
       .margin-bottom
         %h4.text.book.inline
           %span.icon.list.color.theme
@@ -86,14 +67,6 @@
       .inline.info-hide-block{style: "width: 100%;"}
         .more-info
           = render 'more_info'
-        
-        
-
-
-        /= @project.items[0].track_items.for_week.first.user_data
-        / - @project.items.includes(:track_items).each do |i|
-        /   .column_2.thumb.bck.light
-        /     = i.track_items.for_week.map(&:user_data)
 
     - else
       .margin
@@ -103,20 +76,19 @@
     = link_to '', '#', class: "glyphicon glyphicon-chevron-right on-right bck dark hid b-hide b-right"
     %nav.on-left.text.bold{"data-tuktuk" => "menu", style: "margin-left: 50px"}
       = link_to '#', class: "active" do
-        Shots
-        %small (100)
-      = link_to '#' do
         Projects
-        %small (3)
+        %small (9)
       = link_to '#' do
-        Likes
+        Items
+        %small (9)
+      = link_to '#' do
+        Track Items
         %small (192)
       = link_to '#' do
-        Tags
-        %small (160)
+        Images
+        %small (55)
 
 %aside.column_3.aside-right{style: "float: right"}
-  /= link_to '', '#', class: "icon right-sign right-hide hide-button"
   %header.bck.light
     = link_to '', project_items_path(@project), class: "on-right text big icon cog"
     %h4.inline.text.book Enter your data
@@ -130,24 +102,7 @@
                 %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false, input_html: {step: 0.1}
                 %dd.dib= unit(item.unit_id)
     - else
-      %h1 Create your project #{link_to 'items', project_items_path(@project)} ...
-  / %footer
-  /   %b Confirm with enter
-
-
-/ #modal-right.side.column_5{"data-tuktuk" => "modal"}
-/   %header
-/     %h4.inline.text.book Side window.
-/     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-/   %article.form
-/     %label example of input
-/     %input{:type => "text", :value => "text"}/
-/     %input.large{:type => "text", :value => "text"}/
-/     %label Example of textarea
-/     %textarea textarea
-/     %textarea.large textarea
-/     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
-
+      %h1{style: "text-align:center; padding-top: 15px;"} #{link_to 'Add project items', project_items_path(@project)}
 
 :css
   body { overflow: hidden; }

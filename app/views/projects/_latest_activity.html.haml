@@ -1,9 +1,12 @@
-.time= activity_time(@last, type: :short)
-%abbr.owner= @last.item.project.user.name
-added
-%abbr.user-data
-  = @last.user_data 
-  = unit(@last.item.unit_id)
-to 
-%abbr.item-name= fl(@last.item.name)
+- unless @last.nil?  
+  .time= activity_time(@last, type: :short)
+  %abbr.owner= @last.item.project.user.name
+  added
+  %abbr.user-data
+    = @last.user_data 
+    = unit(@last.item.unit_id)
+  to 
+  %abbr.item-name= fl(@last.item.name)
+- else
+  No activity
     

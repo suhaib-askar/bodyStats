@@ -1180,11 +1180,10 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   width: 100%;
 
   .track-cont {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     border: 1px solid #d8d8d8;
     border-radius: 3px;
-    padding: 10px;
-    font-weight: bold;
+    padding-left: 10px;
     font-size: 20px;
     background: #F5F5F5;
     .track-item-name {
@@ -1404,7 +1403,7 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   width: 100%;
   .mas {
     width: 190px;
-
+    margin-top: 20px;
   }
   .i-name {
     text-align: center;
@@ -1478,7 +1477,6 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
     width: 31px;
     padding: 0;
     background: transparent;
-    font-weight: 700;
     border-radius: 0 !important;
     min-height: 22px !important; 
   }
@@ -1513,4 +1511,9 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
     color: #4bc613;
     cursor: pointer;
   }
+}
+
+#track_item_user_data {
+  border-radius: 0;
+  border-color: #222222;
 }

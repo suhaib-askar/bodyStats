@@ -2,9 +2,10 @@ class ProjectsController < ApplicationController
   include ApplicationHelper
   include ProjectsHelper
   before_action :authenticate_user!
-  before_action :set_project, only: [ :show, :edit, :update, :destroy, :more_info ]
+  before_action :set_project, only: %w{show edit update destroy more_info}
   before_action :no_header_footer!, only: [ :show ]
   before_action :units, only: [ :show ]
+  before_action ->(type=params[:type], count=params[:count]) { more_info_details(type, count) }, only: [ :show ]
   
   def new
     @project = Project.new
@@ -13,12 +14,8 @@ class ProjectsController < ApplicationController
   def show
     @activities = get_activities
     @last = last_track_item @activities
+    @report = report(@project.track_items.send(session[:type], session[:count]))
 
-    type = params[:type].present? ? "for_" + params[:type] : "for_week"
-    count = params[:count].present? ? params[:count].to_i : 1
-    @report = report(@project.track_items.send(type, count))
-
-    
     #gon.hide_right_block = true if @project.items.empty?
     # "DAYOFMONTH(created_at) = ? or MONTH(created_at) = ?"
     # data = Net::HTTP.get(URI.parse("http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?"))
@@ -35,10 +32,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def more_info
-    redirect_to @project
-  end
-
   def update
     respond_to do |format|
       if @project.update_attribute(:image, project_params[:image])
@@ -49,9 +42,13 @@ class ProjectsController < ApplicationController
       end
     end
   end
-
+  
     
   private 
+
+    def more_info_details(type, count)
+      set_more_info(type, count)
+    end
 
     def set_project
       @project = current_user.projects.find(params[:id])
@@ -60,5 +57,6 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :description, :image)
     end
+    
     
 end

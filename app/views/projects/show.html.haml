@@ -55,7 +55,7 @@
       .margin-bottom
         %h4.text.book.inline
           %span.icon.list-alt.color.theme
-          Chart data
+          .chart-toggle{style: "display: inline-block"} Chart data
       .inline.my-stock-chart
         = render 'stock_chart'
 
@@ -75,15 +75,15 @@
         /= Time.now.methods 
         /= debug @activities
         /= high_stock('project_stock', @stock)
-      .margin-bottom{style: "margin-top: 50px;"}
+      .margin-bottom
         %h4.text.book.inline
           %span.icon.list.color.theme
-          More details
-      .inline{style: "width: 100%;"}
-        %form{action: project_path(@project), data: {remote: true}, method: :get, "accept-charset" => "UTF-8"}
-          = select_tag :type, options_for_select(TrackItem::SCOPE_TYPES),  prompt: false
-          = text_field_tag(:count, 1)
-          = submit_tag :submit, name: nil
+          .details-toggle{style: "display: inline-block"} More details
+          %form{action: project_path(@project), data: {remote: true}, method: :get, "accept-charset" => "UTF-8", class: "detail-form"}
+            = select_tag :type, options_for_select(TrackItem::SCOPE_TYPES),  prompt: false, class: "type form-control"
+            = text_field_tag(:count, 1, class: "count")
+            = submit_tag 'Go', name: nil, class: "go"
+      .inline.info-hide-block{style: "width: 100%;"}
         .more-info
           = render 'more_info'
         

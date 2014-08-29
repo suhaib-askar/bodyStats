@@ -1,25 +1,23 @@
 - @report.each do |r|
-  .mas.bck.light.margin-bottom
+  .mas.bck.light.margin-bottom{}
     %h2.i-name= fl(r[:item_name])
     - if r[:start_user_data].present? && r[:end_user_data].present?
       %h1.u-percent
         - perc = percent(r[:start_user_data], r[:end_user_data])
-        - if perc >= 0
-          = "+#{perc.to_s(:percentage, precision: 2)}"
+        - if perc > 0
+          .prog= "+#{perc.to_s(:percentage, precision: 2)}"
+        - elsif perc == 0
+          .nopr= "+#{perc.to_s(:percentage, precision: 2)}"
         - else
-          = perc.to_s(:percentage, precision: 2)
+          .degr= perc.to_s(:percentage, precision: 2)
       .u-data-start
-        Start:
-        = r[:start_user_data]
-        = r[:unit]
-        .s-date
-          = r[:start_date].strftime("%B %e, %Y")
+        = fa_icon "chevron-down", text: "#{r[:start_user_data]} #{r[:unit]}", class: "icon"
+      .date= r[:start_date].strftime("%B %e, %Y")
+      .clearfix
       .u-data-end
-        Final:
-        = r[:end_user_data]
-        = r[:unit]
-        .e-date
-          = r[:end_date].strftime("%B %e, %Y") 
+        = fa_icon "chevron-up", text: "#{r[:end_user_data]} #{r[:unit]}", class: "icon"
+      .date= r[:end_date].strftime("%B %e, %Y") 
+      .clearfix
       .d-count Number of data: #{r[:data_count]}
     - else
-      .no-data No Data
+      .no-data No data

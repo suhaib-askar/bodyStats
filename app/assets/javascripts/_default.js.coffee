@@ -108,3 +108,12 @@ $(document).on "page:change", ->
   $('.more-info').masonry
     itemSelector: '.mas',
     columnWidth: 25
+
+  $(".details-toggle").click ->
+    $(".info-hide-block").toggleClass("asside-hide")
+    $(window).trigger 'resize'
+    $('.more-info').masonry()
+  $(".chart-toggle").click ->
+    $(".my-stock-chart").toggleClass("asside-hide")
+    $(window).trigger 'resize'
+    $('.more-info').masonry()

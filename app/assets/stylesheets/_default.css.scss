@@ -1385,6 +1385,7 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   position: relative; 
   //height: 350px;
   width: 100%;
+  margin-bottom: 50px;
 }
 .chart-butt {
   width: 75px;
@@ -1403,5 +1404,113 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
   width: 100%;
   .mas {
     width: 190px;
+
+  }
+  .i-name {
+    text-align: center;
+    font-size: 1.5rem;
+    border: 1px solid #C6C6C6;
+    padding: 3px;
+    margin: 3px;
+    font-weight: 800;
+    color: #fff;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+    text-shadow: 0 -0.15em 0 #000;
+  }
+  .u-percent {
+    text-align: center;
+    font-weight: 800;
+    color: #fff;
+    font-size: 1.9rem;
+  }
+  .prog {background: rgba(75,198,19, .8);}
+  .degr{background: rgba(145,17,17, 1);}
+  .nopr {background: #C6C6C6;}
+  .no-data {
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.3rem;
+    padding: 10px 0;
+    color: #C6C6C6;
+  }
+  .u-data-start {
+    text-decoration: underline;
+    font-weight: 700;
+    float: left;
+    padding: 3px 5px;
+  }
+  .u-data-end {
+    text-decoration: underline;
+    font-weight: 700;
+    float: left;
+    padding: 3px 5px;
+  }
+  .date {
+    border: medium none;
+    cursor: default;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+    opacity: 0.5;
+    display: inline-block;
+    float: right;
+    padding: 5px 5px;
+  }
+  .d-count {
+    font-weight: 700;
+    padding: 5px 10px;
+  }
+}
+
+.detail-form {
+  min-height: 20px !important; 
+  display: inline-block;
+  .type {
+    height: 22px;
+    padding: 0;
+    display: inline-block;
+    width: 60px;
+    border-radius:0;
+  }
+  .count {
+    width: 31px;
+    padding: 0;
+    background: transparent;
+    font-weight: 700;
+    border-radius: 0 !important;
+    min-height: 22px !important; 
+  }
+  .go {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.25);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 -0.15em 0 #000;
+    border-radius: 0;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 1px 6px;
+    &:hover {
+      color: #4bc613;
+    }
+    border-radius: 0;
+  }
+}
+
+.chart-toggle {
+  &:hover{
+    text-decoration: underline;
+    color: #4bc613;
+    cursor: pointer;
+  }
+}
+.details-toggle {
+  &:hover{
+    text-decoration: underline;
+    color: #4bc613;
+    cursor: pointer;
   }
 }

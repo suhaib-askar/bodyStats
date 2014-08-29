@@ -20,7 +20,7 @@ class TrackItemsController < ApplicationController
         format.js do
           @activities = get_activities
           @last = last_track_item(@activities)
-          @report = report(@project.track_items.send(:for_week, 1))
+          @report = report(@project.track_items.send(session[:type], session[:count]))
         end
       else
         flash[:errors] = @item.errors.full_messages
@@ -51,7 +51,7 @@ class TrackItemsController < ApplicationController
         format.js do
           @activities = get_activities
           @last = last_track_item(@activities)
-          @report = report(@project.track_items.send(:for_week, 1))
+          @report = report(@project.track_items.send(session[:type], session[:count]))
         end
       end
     end

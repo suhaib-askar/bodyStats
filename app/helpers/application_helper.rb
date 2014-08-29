@@ -53,4 +53,15 @@ module ApplicationHelper
     end
     res
   end
+
+  def set_more_info(type, count)
+    if type.present? && count.present?
+      session[:type] =  "for_" + type
+      session[:count] = count.to_i
+    else
+      session[:type] ||= :for_week
+      session[:count] ||= 1
+    end
+  end
+
 end

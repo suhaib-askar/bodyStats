@@ -13,7 +13,7 @@
                 %dd.avatar-upload-container.clearfix
                   = gravatar_for resource, size: 70
                   .avatar-upload
-                    = link_to 'Upload new picture', 'http://gravatar.com/emails', target: :_blank, class: 'button upload'
+                    = link_to 'Picture', 'http://gravatar.com/emails', target: :_blank, class: 'button'
               %dl.form
                 %dd= f.input :name, label: 'Name', autofocus: true, required: false
               %dl.form

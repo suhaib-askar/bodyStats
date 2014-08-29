@@ -3,7 +3,8 @@ class TrackItemsController < ApplicationController
   include ApplicationHelper
   before_action :authenticate_user!
   before_action :set_item, only: [:create, :update, :destroy]
-  before_action :units, only: [ :create, :destroy ]
+  before_action :set_project, only: [:create, :update, :destroy]
+  before_action :units, only: [ :create, :update, :destroy ]
 
   def create
     track_item = @item.track_items.build(track_item_params)
@@ -17,9 +18,9 @@ class TrackItemsController < ApplicationController
         }
         format.html { after_create_path }
         format.js do
-          @project = track_item.item.project
-          @activities = get_activities(@project)
+          @activities = get_activities
           @last = last_track_item(@activities)
+          @report = report(@project.track_items.send(:for_week, 1))
         end
       else
         flash[:errors] = @item.errors.full_messages
@@ -43,15 +44,14 @@ class TrackItemsController < ApplicationController
     track_item = @item.track_items.find(params[:id])
     track_item.create_activity :destroy, owner: @item.project, params: {
       info: { deleted_track_item_id: track_item.id }}
-    project = track_item.item.project
     
     respond_to do |format|
       if track_item.destroy
         format.html { after_destroy_path }
         format.js do
-          @project = project
-          @activities = get_activities(@project)
+          @activities = get_activities
           @last = last_track_item(@activities)
+          @report = report(@project.track_items.send(:for_week, 1))
         end
       end
     end
@@ -75,6 +75,10 @@ class TrackItemsController < ApplicationController
       @item = Item.find(params[:item_id])
     end
 
+    def set_project
+      @project = Project.find(params[:project_id])  
+    end
+    
     def track_item_params
       params.require(:track_item).permit(:user_data)
     end

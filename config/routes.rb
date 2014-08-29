@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   
-  get 'activities/index'
 
   #get '/profile' => 'users#profile', as: 'profile'
 
@@ -39,6 +38,7 @@ Rails.application.routes.draw do
       get   '/password/change'       => 'devise/passwords#edit',   as: 'edit_user_password'
       put   '/reset_password'        => 'devise/passwords#update', as: ''
       
+
       scope '/settings' do
         
         # confirmation
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
         get 'all' => 'projects#index', as: ''
         post 'all' => 'projects#create'
       end
-      
+      post 'more_info' => 'project#more_info', as: 'more_info', on: :member
     end
   end
 

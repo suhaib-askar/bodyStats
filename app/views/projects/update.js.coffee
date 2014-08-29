@@ -1,0 +1,1 @@
+$(".project-image-block").html "<%= escape_javascript(render('project_image')) %>"

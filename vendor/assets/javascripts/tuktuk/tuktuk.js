@@ -77,7 +77,9 @@ Copyright (c) 2011-2014 Tapquo S.L. - Licensed GPLv3, Commercial
           e.preventDefault()
           return TukTuk.Box.hide();
         });
-        return tk.dom("[data-tuktuk-box]").on("click", function() {
+
+        return tk.dom("[data-tuktuk-box]").on("click", function(e) {
+          e.preventDefault()
           return TukTuk.Box.show(tk.dom(this).attr('data-tuktuk-box'));
         });
       })(),

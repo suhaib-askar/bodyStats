@@ -33,4 +33,6 @@ module ActivitiesHelper
     return "#{time_ago_in_words(obj.created_at)} ago" if type == :short
     "#{time_ago_in_words(obj.created_at)} ago - #{obj.created_at.strftime("%d %b. %Y, %H:%M")}"
   end
+
+
 end

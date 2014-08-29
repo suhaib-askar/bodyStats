@@ -50,6 +50,7 @@ $(document).on "page:change", ->
         $(this).removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right')
         $.cookie('aside-right', null)
     $(window).trigger 'resize'
+    $('.more-info').masonry()
     
 
   # toggle Chart DataLabels
@@ -83,52 +84,27 @@ $(document).on "page:change", ->
         v.update type: type
 
 
-  # cтартовая ширина
-  # if $.cookie('crt-wdt')
-  #   start_w = $.cookie('crt-wdt')
-  # else
-  #   start_w = $('section > article').width()
+# # jquery ui upload modal
+#   dialog = $(".upload").dialog(
+#     autoOpen: false
+#     height: 300
+#     width: 350
+#     modal: false
+#     buttons:
+#       "Upload": ->
+#         dialog.find( "form" ).submit()
+#         dialog.dialog "close"
+#   )
 
-  # start_crt = start_w - 20
-  # $('#project_stock').width(start_crt) # установка ширины чарта при загрузке стр
-  # $(window).trigger 'resize'
-  # # метод который меняет динамически ширину
-  # res = (start_w, start_crt) ->
-  #   current_w = $('section > article').width()
-  #   if start_w < current_w
-  #     wid = start_crt + (current_w - start_w)
-  #   else 
-  #     wid = start_crt - (start_w - current_w)
-  #   $('#project_stock').width(wid)
-
-  # при изменении размера окна, меняем ширину чарта
-  # $(window).resize ->
-  #   res start_w, start_crt
+#   $(".project-image").click -> 
+#     dialog.dialog "open"
   
-  # клик на кнопки скрыть левый правый блоки
-  # $('.b-hide').off().on 'click', (e) ->
-  #   if $(this).hasClass('b-left')
-  #     $('.aside-left').toggleClass("asside-hide")
-  #     #if $('aside#menu').hasClass('active')
-  #     #  TukTuk.Box.hide()
-  #     if $('.aside-left').hasClass('asside-hide')
-  #       $.cookie('aside-left', false)
-  #     else
-  #       $.cookie('aside-left', null)
-  #   else
-  #     $('.aside-right').toggleClass("asside-hide")
-  #     if $('.aside-right').hasClass('asside-hide')
-  #       $.cookie('aside-right', false)
-  #     else
-  #       $.cookie('aside-right', null)
-  #   $(this).toggleClass ->
-  #     if $(this).hasClass('glyphicon-chevron-left')
-  #       $(this).removeClass('glyphicon-chevron-left')
-  #       'glyphicon-chevron-right'
-  #     else
-  #       $(this).removeClass('glyphicon-chevron-right')
-  #       'glyphicon-chevron-left'
-  #   [1..8].forEach -> 
-  #     $(window).trigger 'resize'
-  #   $.cookie('crt-wdt', $('section > article').width())
-  #   e.preventDefault()
+  $('.project-image-block').on 'change', '#project_image', ->
+    $(".project-image-form").trigger 'submit'
+
+  $('.project-image-block').on 'click', '.project-image', ->
+    $('#project_image').trigger 'click'
+
+  $('.more-info').masonry
+    itemSelector: '.mas',
+    columnWidth: 25

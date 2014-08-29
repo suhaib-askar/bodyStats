@@ -2,9 +2,9 @@
 /*body{color:#222;background:#fff;font-size:16px;font-family:"Roboto","Helvetica Neue",Helvetica,sans-serif;font-weight:300;}*/
 body a{color:#222;}
 body a:not(.button):hover,body a:not(.button):active{color:#4bc613}
-body .bck.light{background-color:#ddd}
-body .bck.dark{background-color:#222}
-body .bck.theme{background-color:#4bc613}
+body .bck.light{background-color:#ddd!important;}
+body .bck.dark{background-color:#222 !important;}
+body .bck.theme{background-color:#4bc613!important;}
 body .bck.theme,body .bck.dark{color:#fff;}
 body .bck.theme a,body .bck.dark a{color:#fff;}
 body .bck.theme a:not(.button):hover,body .bck.dark a:not(.button):hover,body .bck.theme a:not(.button):active,body .bck.dark a:not(.button):active{color:#fff}

@@ -1,0 +1,4 @@
+= simple_form_for(@project, html: {class: "project-image-form"}, remote: true) do |f|
+  = f.input :image, label: false
+= image_tag(@project.image.url.to_s, title:"Click to change image", class: "responsive project-image")
+

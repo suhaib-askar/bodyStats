@@ -1,0 +1,25 @@
+- @report.each do |r|
+  .mas.bck.light.margin-bottom
+    %h2.i-name= fl(r[:item_name])
+    - if r[:start_user_data].present? && r[:end_user_data].present?
+      %h1.u-percent
+        - perc = percent(r[:start_user_data], r[:end_user_data])
+        - if perc >= 0
+          = "+#{perc.to_s(:percentage, precision: 2)}"
+        - else
+          = perc.to_s(:percentage, precision: 2)
+      .u-data-start
+        Start:
+        = r[:start_user_data]
+        = r[:unit]
+        .s-date
+          = r[:start_date].strftime("%B %e, %Y")
+      .u-data-end
+        Final:
+        = r[:end_user_data]
+        = r[:unit]
+        .e-date
+          = r[:end_date].strftime("%B %e, %Y") 
+      .d-count Number of data: #{r[:data_count]}
+    - else
+      .no-data No Data

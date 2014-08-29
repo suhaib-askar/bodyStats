@@ -4,7 +4,7 @@ ruby '1.9.3'
 gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.17.1'
-
+gem 'remotipart', '~> 1.2.1'
 gem 'devise', '~> 3.2.4'
 # gem 'devise-i18n', '~> 0.10.4'
 gem 'cancan', '~> 1.6.10'
@@ -45,7 +45,7 @@ gem 'babosa', '~> 0.3.11'
 gem 'lazy_high_charts', '~> 1.5.4'
 #gem 'chartkick', '~> 1.3.2'
 #gem 'groupdate', '~> 2.2.1'
-  
+gem 'carrierwave', '~> 0.10.0' 
 gem 'gon', '~> 5.1.2'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'
@@ -77,3 +77,4 @@ gem 'autoprefixer-rails'
 gem 'compass-rails'
 gem "susy"
 gem "haml-rails"
+gem 'font-awesome-rails', '~> 4.1.0.0'

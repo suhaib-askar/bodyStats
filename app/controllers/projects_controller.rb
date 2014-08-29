@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   include ApplicationHelper
   include ProjectsHelper
   before_action :authenticate_user!
-  before_action :set_project, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_project, only: [ :show, :edit, :update, :destroy, :more_info ]
   before_action :no_header_footer!, only: [ :show ]
   before_action :units, only: [ :show ]
   
@@ -11,11 +11,13 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @activities = get_activities(@project)
-    @last = last_track_item(@activities)
+    @activities = get_activities
+    @last = last_track_item @activities
 
-    #@count_tr = TrackItem.where(item_id: @project.item_ids).count
-    #@count_tr = TrackItem.joins(item: :project).where(items: { project_id: @project }).count
+    type = params[:type].present? ? "for_" + params[:type] : "for_week"
+    count = params[:count].present? ? params[:count].to_i : 1
+    @report = report(@project.track_items.send(type, count))
+
     
     #gon.hide_right_block = true if @project.items.empty?
     # "DAYOFMONTH(created_at) = ? or MONTH(created_at) = ?"
@@ -33,6 +35,22 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def more_info
+    redirect_to @project
+  end
+
+  def update
+    respond_to do |format|
+      if @project.update_attribute(:image, project_params[:image])
+        format.html { redirect_to @project }
+        format.js {}
+      else
+        format.html { redirect_to @project }
+      end
+    end
+  end
+
+    
   private 
 
     def set_project
@@ -40,7 +58,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description)
+      params.require(:project).permit(:name, :description, :image)
     end
     
 end

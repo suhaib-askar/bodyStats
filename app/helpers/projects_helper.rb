@@ -25,7 +25,7 @@ module ProjectsHelper
     end
   end
 
-  def get_activities(project)
+  def get_activities(project=@project)
     PublicActivity::Activity.includes([
       {trackable: {item: {project: :user}}}, {owner: :user}, :trackable
     ]).order("created_at desc").where(owner: project, owner_type: "Project")
@@ -33,6 +33,33 @@ module ProjectsHelper
 
   def last_track_item(activities)
     activities.map(&:trackable).compact[0]
+  end
+
+  def report(project_track_items)
+    sorted_tr = []
+    @project.items.each do |item|
+      sorted_tr[item.id] = {item_id: item.id, item_name: item.name, unit: unit(item.unit_id),start_user_data: '', end_user_data: '', data_count: 0}
+      project_track_items.each do |ptr|
+        if ptr.item_id == item.id
+          sorted_tr[item.id][:data_count] += 1
+          if sorted_tr[item.id][:start_date] && sorted_tr[item.id][:end_date]
+            if sorted_tr[item.id][:start_date] > ptr.created_at
+              sorted_tr[item.id][:start_user_data] = ptr.user_data
+              sorted_tr[item.id][:start_date] = ptr.created_at
+            elsif sorted_tr[item.id][:end_date] < ptr.created_at
+              sorted_tr[item.id][:end_user_data] = ptr.user_data
+              sorted_tr[item.id][:end_date] = ptr.created_at
+            end
+          else
+            sorted_tr[item.id][:start_user_data] = ptr.user_data
+            sorted_tr[item.id][:end_user_data] = ptr.user_data
+            sorted_tr[item.id][:start_date] = ptr.created_at
+            sorted_tr[item.id][:end_date] = ptr.created_at
+          end
+        end
+      end
+    end
+    sorted_tr.compact
   end
 
 end

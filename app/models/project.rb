@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   extend FriendlyId
   extend Babosa
+  
   before_save { self.name = name.mb_chars.downcase }
   friendly_id :name, use: [ :scoped, :slugged, :finders ], scope: :user
   
@@ -14,7 +15,7 @@ class Project < ActiveRecord::Base
 
   validates :description, presence: true, length: { maximum: 50 }
 
-  
+  mount_uploader :image, ImageUploader
 
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize(transliterations: :russian).to_s
@@ -35,7 +36,7 @@ class Project < ActiveRecord::Base
   end
 
   def track_items
-    TrackItem.joins(item: :project).where(items: { project_id: id })
+    items = TrackItem.joins(item: :project).where(items: { project_id: id })
   end
 
 end

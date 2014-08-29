@@ -14,12 +14,17 @@
 //= require jquery_ujs
 //= require jquery.cookie
 //= require bootstrap
+//= require jquery.remotipart
 //= require turbolinks
 //= require_tree .
 
 //= require highcharts/highstock
+//= require masonry.dpkg
 
 //= require jquery-ui/core
 //= require jquery-ui/widget
 //= require jquery-ui/mouse
+//= require jquery-ui/position
+//= require jquery-ui/draggable
 //= require jquery-ui/resizable
+//= require jquery-ui/dialog

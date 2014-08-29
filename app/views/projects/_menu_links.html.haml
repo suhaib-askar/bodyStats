@@ -1,0 +1,13 @@
+= link_to root_path, class: 'active' do
+  %span.icon.star
+  Projects
+  %small (#{current_user.projects.count})
+= link_to project_items_url(@project) do
+  = fa_icon "bars", text: "Items", class: "icon"
+  %small (#{@project.items.count})
+= link_to '#', data: {"tuktuk-box" => "menu"} do
+  = fa_icon "bar-chart-o", text: "Track Items", class: "icon"
+  %small (#{@project.track_items.count})
+= link_to '#' do
+  = fa_icon "image", text: "Images", class: "icon"
+  %small (55)

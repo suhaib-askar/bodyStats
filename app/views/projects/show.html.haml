@@ -17,7 +17,8 @@
         = link_to current_user.name, edit_user_registration_path, class: "color theme"
     = link_to '', edit_user_registration_path, class: "on-right text big icon cog"
   %article.bck.light.scroll
-    = image_tag('http://www.havingtime.com/wp-content/uploads/2012/09/Don%E2%80%99t-give-up-e1349045134143.jpg', class: "responsive")
+    .project-image-block
+      = render 'project_image'
     .margin-left.margin-right
       %h4.text.bold.color.theme.inline= current_user.name
       %span.margin-left.tag.bck.color.inline.text.bold owner
@@ -29,35 +30,19 @@
       %strong.text.big.normal.block= fl(@project.name)
       .display.block.text.justify.small= @project.description
     %hr/
-    %nav.text.bold{data:{tuktuk:"menu"}}
-      = link_to '#', class: 'active' do
-        %span.icon.user
-        Projects
-        %small (#{current_user.projects.count})
-      = link_to '#' do
-        %span.icon.heart
-        Items
-        %small (#{@project.items.count})
-      = link_to '#' do
-        %span.icon.group
-        Track Items
-        %small (#{@project.track_items.count})
-      = link_to '#' do
-        %span.icon.star
-        Images
-        %small (55)
-    - if @last
-      %hr/
+    %nav.text.bold.menu-links{data:{tuktuk:"menu"}}
+      = render "menu_links"
+    %hr/
+    .margin
+      %strong.text.big.normal.block 
+        %span.glyphicon.glyphicon-bell 
+        Latest Activity
       .margin
-        %strong.text.big.normal.block 
-          %span.glyphicon.glyphicon-bell 
-          Latest Activity
-        .margin
-          .latest-activity
-            = render 'latest_activity'
-        .margin
-          %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
-          /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside  
+        .latest-activity
+          = render 'latest_activity'
+      .margin
+        %button.btn.custom-button-dark{"data-tip" => "Click to view a all activities", "data-tuktuk-box"=>"menu"} More Activities
+        /%button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal"} Aside  
 %section
   %header.bck.dark
     %h3.on-left.text.thin
@@ -80,7 +65,7 @@
         /= line_chart User.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_day - 5.day, Time.now.end_of_day - 5.day).group_by_day(:created_at).count
         
         /= line_chart(@project.items.group(:name).map { |i| i.track_items.group_by_day(:created_at).count })
-        / {i.track_items.map {|tr| "#{tr.created_at} => #{tr.user_data}" } }
+        / {i.track_items.map {|tr| "#{tr.createmd_at} => #{tr.user_data}" } }
         / = line_chart(@project.items.map { |i| { name: i.name, data: i.track_items.group_by_hour(:created_at).count } })
         /= line_chart({20.day.ago => 5, 1368174456 => 4, "2013-05-07 00:00:00 UTC" => 7})
         /= high_chart("charts", @chart)
@@ -90,22 +75,26 @@
         /= Time.now.methods 
         /= debug @activities
         /= high_stock('project_stock', @stock)
-        
       .margin-bottom{style: "margin-top: 50px;"}
         %h4.text.book.inline
           %span.icon.list.color.theme
           More details
-      .inline
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
-        .column_2.thumb.bck.light thumb
+      .inline{style: "width: 100%;"}
+        %form{action: project_path(@project), data: {remote: true}, method: :get, "accept-charset" => "UTF-8"}
+          = select_tag :type, options_for_select(TrackItem::SCOPE_TYPES),  prompt: false
+          = text_field_tag(:count, 1)
+          = submit_tag :submit, name: nil
+        .more-info
+          = render 'more_info'
+        
+        
+
+
+        /= @project.items[0].track_items.for_week.first.user_data
+        / - @project.items.includes(:track_items).each do |i|
+        /   .column_2.thumb.bck.light
+        /     = i.track_items.for_week.map(&:user_data)
+
     - else
       .margin
         %h1 CREATE YOUR PROJECT DATA
@@ -138,7 +127,7 @@
           %div.track-cont
             = simple_form_for([@project, item, item.track_items.build], remote: true) do |f|
               %dl.form.track
-                %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false
+                %dd.dib= f.input :user_data, label: fl(item.name), placeholder: "enter", autofocus: true, required: false, input_html: {step: 0.1}
                 %dd.dib= unit(item.unit_id)
     - else
       %h1 Create your project #{link_to 'items', project_items_path(@project)} ...
@@ -146,13 +135,6 @@
   /   %b Confirm with enter
 
 
-/ #modal.column_5{"data-tuktuk" => "modal"}
-/   %header
-/     %h4.text.book.inline Normal window
-/     %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-/   %article
-/     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
-    
 / #modal-right.side.column_5{"data-tuktuk" => "modal"}
 /   %header
 /     %h4.inline.text.book Side window.

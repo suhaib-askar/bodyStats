@@ -42,4 +42,15 @@ module ApplicationHelper
   def units
     @units = Unit.all.map { |u|  { u.id => {full_en: u.full_en, short_en: u.short_en, full_ru: u.full_ru, short_ru: u.short_ru} } } 
   end
+
+  def percent(n1, n2)
+    res = if n1.present? && n2.present?
+      n1 = n1.to_f
+      n2 = n2.to_f
+      (n2/n1 - 1) * 100
+    else
+      0
+    end
+    res
+  end
 end

@@ -1,55 +1,5 @@
-%aside.column_3
-  %header.bck.theme
-    %strong Ocibaka
-    = link_to '', edit_user_registration_path, class: "on-right text big icon cog", data: { "tuktuk-box" => "menu" }
-  %article.bck.dark.scroll
-    = gravatar_for current_user, class: "responsive"
-    .margin-left.margin-right
-      %h4.text.bold.color.theme.inline= current_user.name
-      %span.margin-left.tag.bck.theme.inline.text.bold admin
-      = link_to root_path, class: "block" do 
-        %span.icon.twitter
-        ocibaka
-    %hr/
-    .margin{data:{tuktuk:"buttons"}}
-      %button.theme.button{data:{tip:"Click to view a modal window", "tuktuk-modal"=>"modal"}} Modal
-      %button.button.primary{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
-    %hr/
-    %ul.margin{data:{tuktuk:"totals"}}
-      %li
-        %strong 3609
-        %small followers
-      %li
-        %strong 138
-        %small following
-      %li
-        %strong 14
-        %small lists
-    %hr/
-    .margin
-      %strong.text.big.normal.block
-        About
-        = link_to 'Orman Clark', '#' 
-      .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-    %nav.text.bold{data:{tuktuk:"menu"}}
-      = link_to '#', class: 'active' do
-        %span.icon.user 
-        Shots
-        %small (100)
-      = link_to '#' do
-        %span.icon.heart>
-        Trending
-        %small (3)
-      = link_to '#' do
-        %span.icon.group>
-        Following
-        %small (192)
-      = link_to '#' do
-        %span.icon.star>
-        Debuts
-        %small (160)
 %section
-  %header
+  %header.bck.dark
     %h3.on-left.text.thin
       Web Application
       %span.tag.bck.theme NEW!
@@ -58,50 +8,12 @@
     .margin-bottom
       %h4.text.book.inline
         %span.icon.star.color.theme
-        Featured
-      %nav.inline.on-right
-        %a.button.small{:href => "#"}
-          %span.icon.search>
-          Search
-        %a.button.theme.small{:href => "#"}
-          %span.icon.envelope>
-          Send
+        Projects
     .inline
-      .column_4.thumb.bck.light thumb
-      .column_4.thumb.bck.light thumb
-    .margin-bottom
-      %h4.text.book.inline
-        %span.icon.group.color.theme
-        Friends
-      %nav.inline.on-right
-        %a.button.small{:href => "#"}
-          %span.icon.search>
-          Search
-    .inline
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-      .column_2.thumb.bck.light thumb
-  %footer.bck.light
+      .column_4.thumb.bck.light Project 1
+      .column_4.thumb.bck.light Project 2
+
+  %footer.bck.dark
     %nav.on-left.text.bold{"data-tuktuk" => "menu"}
       %a.active{:href => "#"}
         Shots
@@ -116,29 +28,6 @@
         Tags
         %small (160)
     %nav.on-right
-#modal.column_5{"data-tuktuk" => "modal"}
-  %header
-    %h4.text.book.inline Normal window
-    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-  %article
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum assumenda aperiam nobis quam earum nihil veritatis modi possimus blanditiis perferendis obcaecati voluptatibus fuga eaque ad et atque nostrum porro expedita!
-#modal-right.side.column_5{"data-tuktuk" => "modal"}
-  %header
-    %h4.inline.text.book Side window.
-    %button.transparent.small.on-right.inline.icon.remove{"data-modal" => "close"}
-  %article.form
-    %label example of input
-    %input{:type => "text", :value => "text"}/
-    %input.large{:type => "text", :value => "text"}/
-    %label Example of textarea
-    %textarea textarea
-    %textarea.large textarea
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt quos dolorum minus fugiat rem similique velit aperiam est sequi neque nulla tenetur minima autem facilis temporibus quaerat consectetur impedit praesentium.
-  %footer
-    %button{"data-modal" => "close"} Save
-:javascript
-  TukTuk.Modal.loading();
-  setTimeout( TukTuk.Modal.hide, 1000);
 
 :css
   [data-tuktuk=boxes]{display:-moz-box;}
@@ -149,59 +38,3 @@
   [data-tuktuk="modal"].side{display:-moz-box;}
   .flexbox { display:-moz-box;}
   [data-tuktuk=boxes] > aside > div{display:-moz-box;}
-
-
-
-/ %aside#menu.absolute.bck.light.column_3
-/   %header.bck.dark
-/     .session.on-left
-/       %strong
-/         logged in as
-/         %a.color.theme{:href => "/"} soyjavi
-/     %a.on-right.text.big.icon.remove.color.white{"data-box" => "close", :href => "#"}
-/   %article.bck.light.scroll
-/     %img.responsive{:src => "http://cdn.tapquo.com/photos/javi_color.jpg"}/
-/     .margin-left.margin-right
-/       %h4.text.bold.color.theme.inline Javi Jiménez
-/       %span.margin-left.tag.bck.color.inline.text.bold pro
-/       %a.block{:href => "#"}
-/         %span.icon.twitter
-/         soyjavi
-/     %hr/
-/     .margin{"data-tuktuk" => "buttons"}
-/       %button.theme{"data-tip" => "Click to view a modal window", "data-tuktuk-modal" => "modal"} Modal
-/       %button{"data-tip" => "Click to view a side window", "data-tuktuk-modal" => "modal-right"} Aside
-/     %hr/
-/     %ul.margin{"data-tuktuk" => "totals"}
-/       %li
-/         %strong 3609
-/         %small followers
-/       %li
-/         %strong 138
-/         %small following
-/       %li
-/         %strong 14
-/         %small lists
-/     %hr/
-/     .margin
-/       %strong.text.big.normal.block
-/         About
-/         = link_to 'Orman Clark', root_url
-/       .display.block.text.justify.small Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-/     %nav.text.bold{"data-tuktuk" => "menu"}
-/       %a.active{:href => "#"}
-/         %span.icon.user>
-/         Shots
-/         %small (100)
-/       %a{:href => "#"}
-/         %span.icon.heart>
-/         Trending
-/         %small (3)
-/       %a{:href => "#"}
-/         %span.icon.group>
-/         Following
-/         %small (192)
-/       %a{:href => "#"}
-/         %span.icon.star>
-/         Debuts
-/         %small (160)

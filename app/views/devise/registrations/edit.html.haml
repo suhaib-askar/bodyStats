@@ -1,4 +1,4 @@
-.margin-content-3
+.margin-content-2
   .container
     = render "shared/settings_menu_container"
     .settings-content
@@ -9,11 +9,9 @@
             .form-left
               %dl.form.edit-profile-avatar
                 %dt
-                  %label{for: "upload-profile-picture"} Profile picture
+                  %label= link_to 'Profile picture', 'http://gravatar.com/emails', target: :_blank, style:"text-decoration: underline;"
                 %dd.avatar-upload-container.clearfix
                   = gravatar_for resource, size: 70
-                  .avatar-upload
-                    = link_to 'Picture', 'http://gravatar.com/emails', target: :_blank, class: 'button'
               %dl.form
                 %dd= f.input :name, label: 'Name', autofocus: true, required: false
               %dl.form

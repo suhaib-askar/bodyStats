@@ -296,6 +296,10 @@ pre {
   transform: matrix(1, 0, 0, 1, 0, 0); 
 }
 
+.custom-header-fix {
+  height: 65px;
+}
+
 .site {
   margin-top: 64px;
 }
@@ -786,10 +790,7 @@ div.fieldgroup div.error {
 }
 
 .alert {
-  position: absolute;
-  top: 90px;
-  left: 50%;
-  margin-left: -490px;
+  margin: 25px auto;
   width: 980px;
   a {
     line-height: 18px;
@@ -1068,11 +1069,11 @@ dl.form input[type="text"]:focus, dl.form .focused .drag-and-drop, .focused dl.f
 }
 
 .margin-content-3 {
-  margin-top: 100px;
+  margin-top: 165px;
 }
 
 .margin-content-2 {
-  margin-top: 165px;
+  margin-top: 40px;
 }
 
 .margin-content-1 {

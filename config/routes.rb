@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   #             }
   
   
-
+  get '(errors)/:status' => 'errors#show', constraints: { status: /\d{3}/ }, via: :all
+  
   devise_for :users, skip: [:sessions, :passwords, :registrations]
   scope '(:locale)' do
   #scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do

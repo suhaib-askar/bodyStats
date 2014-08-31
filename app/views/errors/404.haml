@@ -1,0 +1,24 @@
+- provide(:title, 'Not Found 404')
+%body
+  / This file lives in app/views/errors/404.haml
+  %br
+  %p.error= details[:name]
+  %p= details[:message]
+  %hr
+  = image_tag("error-404.png", alt: "404", class: "error-404")  
+  %hr
+    
+:css
+  body {
+    background-color: #EFEFEF;
+    color: #2E2F30;
+    text-align: center;
+    font-family: arial, sans-serif;
+    margin: 0;
+  }
+  .error {
+    color: #666;
+    font-family: "Century Gothic";
+    font-size: 2em;
+    text-align: center;
+  }

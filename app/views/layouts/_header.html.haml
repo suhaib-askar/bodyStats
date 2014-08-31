@@ -13,15 +13,15 @@
         = link_to 'Sign up', new_user_registration_path, class: "button primary"
         = link_to 'Sign in', new_user_session_path,  class: "button signin"
     .command-bar
-      %ul.top-nav
-        %li.explore
-          %a{href: "#"} Explore
-        %li.features
-          %a{href: "#"} Features
-        %li.enterprise
-          %a{href: "#"} Enterprise
-        %li.blog
-          %a{href: "#"} Blog
+      / %ul.top-nav
+      /   %li.explore
+      /     %a{href: "#"} Explore
+      /   %li.features
+      /     %a{href: "#"} Features
+      /   %li.enterprise
+      /     %a{href: "#"} Enterprise
+      /   %li.blog
+      /     %a{href: "#"} Blog
       = form_tag("/search", method: "get", class: "command-bar-form", id: "top_search_form") do
         .commandbar
           %span

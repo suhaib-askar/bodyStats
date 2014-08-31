@@ -29,6 +29,8 @@ module BodyStats
     config.assets.precompile = [/(^[^_\/]|\/[^_])[^\/]*$/]
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     
+    config.exceptions_app = self.routes
+    config.action_dispatch.rescue_responses["ProjectsController::InternalServerError"] = :internal_server_error
 
     config.generators do |g|
       g.template_engine :haml

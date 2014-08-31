@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
+  
   before_action :set_i18n_locale_from_params
   before_action :set_start_time
 

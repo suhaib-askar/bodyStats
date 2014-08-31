@@ -15,7 +15,9 @@ class ProjectsController < ApplicationController
     @activities = get_activities
     @last = last_track_item @activities
     @report = report(@project.track_items.send(session[:type], session[:count]))
-
+    
+    #raise InternalServerError, "Its 500 Error" # test 500 error 
+    
     #gon.hide_right_block = true if @project.items.empty?
     # "DAYOFMONTH(created_at) = ? or MONTH(created_at) = ?"
     # data = Net::HTTP.get(URI.parse("http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?"))

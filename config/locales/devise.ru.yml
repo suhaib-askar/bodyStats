@@ -16,7 +16,7 @@ ru:
 
   devise:
     failure:
-      already_authenticated: "Вы уже вошли в систему."
+      already_authenticated: ""
       unauthenticated: "Вам необходимо войти в систему или зарегистрироваться."
       unconfirmed: "Вы должны подтвердить вашу учётную запись."
       locked: "Ваша учётная запись заблокирована."

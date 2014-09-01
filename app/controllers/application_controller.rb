@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
-  
+  include CustomExceptions::LocalesException
   before_action :set_i18n_locale_from_params
   before_action :set_start_time
 
@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
         else
           #flash.now[:error] = "#{locale} translation not available"
           logger.error flash.now[:notice]
+          raise UnknownLocale
         end
       else
         I18n.locale = session[:locale]

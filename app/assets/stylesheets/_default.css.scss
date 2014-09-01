@@ -1569,3 +1569,47 @@ dl.form > dd input.long[type="text"], dl.form > dd #adv_code_search .long.search
     }
   }
 }
+
+.user-signed {
+  .settings-link {
+    text-decoration: none;
+    list-style-type: none !important;
+    .gravatar {
+      border-radius: 50%;
+      border: 1px solid #AAA4A4;
+    }
+    .name {
+      font-weight: 400;
+      font-size: 1.7rem;
+    }
+  }
+  .m-menu {
+    a {color: #000 !important;}
+
+    .settings {
+      
+      &:hover { background: #EAEAEA; }
+    }
+    .logout {
+      
+      &:hover { background: #EAEAEA; }
+    }
+  }
+
+}
+
+.signed-search {
+  position: absolute;
+  left: 50%;
+  margin-left: -125px;
+  input {width: 250px;}
+}
+
+.project-icon {
+  padding-top: 10px;
+  margin-bottom: 20px;
+  font-size: 140px;
+  position: absolute;
+  left: 50%;
+  margin-left: -70px;
+}

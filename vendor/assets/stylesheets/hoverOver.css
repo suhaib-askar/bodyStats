@@ -1,0 +1,68 @@
+.ho-box{
+	position: relative;
+	overflow: hidden;
+}
+.hover-content-box{
+	display: none;
+	cursor: pointer;
+}
+.hover-content-box, .hover-content-copy-txt, .hover-content-box-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+.hover-content-copy-txt{
+	z-index: 2;
+	overflow: auto;
+	color: #fff;
+}
+.hover-content-box-overlay{
+	background: #000;
+	opacity: 0.75;
+	z-index: 1;
+}
+.ho-content, .ho-push-content{
+	display: none;
+}
+.hover-content-block{
+	padding: 20px;
+	line-height: 16px;
+}
+
+.project-box{
+	border: solid 10px #e5e5e5;
+	background: #CCC;
+	margin: 10px;
+}
+
+
+/* Demo7 Style */
+.project-box, .project{
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.79);
+	-moz-box-shadow:    0px 0px 4px 0px rgba(0, 0, 0, 0.79);
+	box-shadow:         0px 0px 4px 0px rgba(0, 0, 0, 0.79);
+	width: 340px;
+	height: 220px;
+	overflow: hidden;
+	position: relative;
+	display: inline-block;
+}
+.project .hover-content-block{
+	padding: 20px;
+	font-size: 14px;
+	color: #fff;
+	line-height: 22px;
+}
+.project .hover-content-block strong{
+	font-size: 20px;
+	font-weight: bold;
+	padding: 0 0 20px 0;
+}
+.project .hover-content-box-overlay{
+	background: #000;
+	opacity: 0.7;
+}
+.project .hover-content-block p{
+	padding: 0 0 20px 0;
+}

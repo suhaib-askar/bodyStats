@@ -20,6 +20,7 @@
 
 //= require highcharts/highstock
 //= require masonry.dpkg
+//= require jquery.hoverOver.min
 
 //= require jquery-ui/core
 //= require jquery-ui/widget

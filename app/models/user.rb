@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 30 }
   has_many :projects, dependent: :destroy
 
+  
 
   # has_many :microposts, dependent: :destroy
   # has_many :relationships, foreign_key: :follower_id, dependent: :destroy

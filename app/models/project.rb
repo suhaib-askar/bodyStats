@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :items, dependent: :destroy
   
-
+  scope :newer, -> { order("created_at ASC") }
 
   validates :name, presence: true, length: { maximum: 30 }#, uniqueness: { scope: :user_id, case_sensitive: false } тоже самое что и метод
   validate :uniq_proj_for_user

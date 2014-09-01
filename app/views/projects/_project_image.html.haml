@@ -1,4 +1,9 @@
 = simple_form_for(@project, html: {class: "project-image-form"}, remote: true) do |f|
   = f.input :image, label: false
-= image_tag(@project.image.url.to_s, title:"Click to change image", class: "responsive project-image")
+- if @project.image.url.present?
+  = image_tag(@project.image.url.to_s, title:"Click to change image", class: "responsive project-image")
+- else
+  %div{style: "width: 247px; height: 155px; position: relative;"}
+    = fa_icon "camera-retro", class: "project-icon project-image"
+
 

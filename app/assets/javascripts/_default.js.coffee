@@ -118,3 +118,13 @@ $(document).on "page:change", ->
     $(".my-stock-chart").toggleClass("asside-hide")
     $(window).trigger 'resize'
     $('.more-info').masonry()
+
+  $(".project").hoverOver
+    aniTypeIn: "flybottom"
+    aniTypeOut: "flybottom"
+    aniDurationIn: 600
+    aniDurationOut: 900
+    contentShowHeight: 65
+
+  $(".hover-content-box").click ->
+    window.location.href = $(this).parents("#project").data("url")

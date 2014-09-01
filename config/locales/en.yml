@@ -17,3 +17,6 @@ en:
         name_error:
           title: "Internal Server Error"
           description: "If you are the administrator of this website, then please read this web application's log file and/or the web server's log file to find out what went wrong."
+        custom_exceptions/locales_exception/unknown_locale:
+          title: "Unknown locale"
+          description: "Please correct the name of the locale"

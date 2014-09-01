@@ -1,17 +1,41 @@
 %section
   %header.bck.dark
     %h3.on-left.text.thin
-      Web Application
-      %span.tag.bck.theme NEW!
+      = current_user.name 
+      |
+      = current_user.email
     %nav.on-right
   %article.padding.scroll
     .margin-bottom
       %h4.text.book.inline
         %span.icon.star.color.theme
         Projects
-    .inline
-      .column_4.thumb.bck.light Project 1
-      .column_4.thumb.bck.light Project 2
+    .inline.project-list
+      / %article.item{:style => "cursor: pointer;"}
+      /   %header
+      /     %h3
+      /       %a{:href => "/solarize"} Solarize
+      /     %span.type Responsive HTML5
+      /   %a.image{:href => "/solarize"}
+      /     = image_tag current_user.projects[7].image
+      /   %footer
+      /     .inner
+      /       %p A clean, minimalist responsive template built for whatever sort of venture you might be crafting.
+      /       %a.button{:href => "/solarize"}
+      /         Download
+      /         %span.extra (5,455)
+      
+
+
+      - current_user.projects.each do |project|
+        .column_4.thumb.bck.light.margin-bottom.margin
+          .project-image-block{style: "width:100%; height: 100%;"}
+            /{style: "background: url(#{project.image}); background-size: contain"}
+            = project.name
+            = image_tag project.image, style: "width: 200px; height:185px;"
+            
+            
+
 
   %footer.bck.dark
     %nav.on-left.text.bold{"data-tuktuk" => "menu"}

@@ -46,6 +46,8 @@ gem 'lazy_high_charts', '~> 1.5.4'
 #gem 'chartkick', '~> 1.3.2'
 #gem 'groupdate', '~> 2.2.1'
 gem 'carrierwave', '~> 0.10.0' 
+gem 'rmagick', '~> 2.13.3'
+
 gem 'gon', '~> 5.1.2'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'

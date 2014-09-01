@@ -11,22 +11,6 @@
         %span.icon.star.color.theme
         Projects
     .inline.project-list
-      / %article.item{:style => "cursor: pointer;"}
-      /   %header
-      /     %h3
-      /       %a{:href => "/solarize"} Solarize
-      /     %span.type Responsive HTML5
-      /   %a.image{:href => "/solarize"}
-      /     = image_tag current_user.projects[7].image
-      /   %footer
-      /     .inner
-      /       %p A clean, minimalist responsive template built for whatever sort of venture you might be crafting.
-      /       %a.button{:href => "/solarize"}
-      /         Download
-      /         %span.extra (5,455)
-      
-
-
       - current_user.projects.each do |project|
         .column_4.thumb.bck.light.margin-bottom.margin
           .project-image-block{style: "width:100%; height: 100%;"}

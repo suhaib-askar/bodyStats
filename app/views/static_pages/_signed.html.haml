@@ -26,8 +26,10 @@
         Projects
     .inline.project-list
       - current_user.projects.newer.each do |project|
-        .project-box.project-box
-          #project.ho-box.project{data: {content: "#project-content_#{project.id}", url: "#{project_url(project)}"}}
+        .project-box
+          = link_to project_path(project), data: { confirm: "Are you sure you want to do this?" }, method: :delete, class: "button danger custom-delete" do
+            = fa_icon "times"
+          #project.ho-box.project{data: {content: "#project-content_#{project.id}", url: "#{project_url(project)}"}} 
             - if project.image.present?
               = image_tag project.image, style: "width:320px; height:200px;"
             - else
@@ -38,7 +40,12 @@
               %strong.name= fl(project.name)
               %p= project.description
               .p-items Items: #{project.items.count}
-              .p-track-items Track Items: #{project.track_items.count}
+              .p-track-items Track items: #{project.track_items.count}
+              %br
+              - if project.track_items.present?
+                .p-last Last activity: #{activity_time(last_track_item(get_activities(project)), type: :short) }
+              .p-created Created: #{project.created_at}
+               
 
 :css
   [data-tuktuk=boxes]{display:-moz-box;}

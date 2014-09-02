@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  
   def set_locale
     I18n.locale = params[:set_locale]
     return redirect_to request.referer unless locale

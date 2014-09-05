@@ -4,7 +4,7 @@
       .add-project
         = link_to new_project_path, class: "" do
           = fa_icon "plus", text: "New project" 
-          %span.badge= current_user.projects.count
+          %span.badge= @projects.count
     = form_tag("", method: "get", class: "on-left signed-search") do
       = text_field_tag :q, '', placeholder: "Search", autocapitalize: "off"
     %nav.on-right{style: "margin-right: 50px;"}
@@ -25,7 +25,7 @@
         %span.icon.star.color.dark
         Projects
     .inline.project-list
-      - current_user.projects.newer.each do |project|
+      - @projects.newer.each do |project|
         .project-box
           = link_to project_path(project), data: { confirm: "Are you sure you want to do this?" }, method: :delete, class: "button danger custom-delete" do
             = fa_icon "times"
@@ -43,7 +43,7 @@
               .p-track-items Track items: #{project.track_items.count}
               %br
               - if project.track_items.present?
-                .p-last Last activity: #{activity_time(last_track_item(get_activities(project)), type: :short) }
+                .p-last Last activity: #{activity_time(PublicActivity::Activity.where(owner: project, owner_type: "Project").last, type: :short) }
               .p-created Created: #{project.created_at}
                
 

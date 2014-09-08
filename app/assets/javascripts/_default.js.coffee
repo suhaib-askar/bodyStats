@@ -128,3 +128,7 @@ $(document).on "page:change", ->
 
   $(".hover-content-box").click ->
     window.location.href = $(this).parents("#project").data("url")
+
+  notify = $('.custom-header-tuk').height() || $('.custom-header').height() + 30 
+  $('#frontend_notification').height(notify) 
+  $('.message').css("line-height", notify + "px")

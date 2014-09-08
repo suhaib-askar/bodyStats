@@ -46,7 +46,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       #respond_with resource
-      flash[:errors] = resource.errors.full_messages
+      flash[:error] = resource.errors.full_messages.first
       respond_with(resource) do |format|
         format.html { redirect_to edit_user_registration_url }
       end

@@ -8,9 +8,9 @@
     = render 'layouts/shim'
   %body{ data: { tuktuk: @tuktuk } }
     = include_gon
-
+    = render :partial => "shared/frontend_notifier"
     = my render('layouts/header')
-    = print_errors
+    /= print_errors
     = yield      
     = my render('layouts/footer')
     / нужно что бы скрипт был подключен в конце документа

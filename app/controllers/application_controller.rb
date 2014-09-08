@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
   include CustomExceptions::LocalesException
-  before_action :set_i18n_locale_from_params
+  #before_action :set_i18n_locale_from_params
   before_action :set_start_time
 
   protect_from_forgery with: :exception
-  
+  #check_authorization
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to main_app.root_path, :alert => exception.message
+  end
   private
 
     # Devise
@@ -35,9 +39,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def default_url_options      
-      { locale: I18n.locale }
-    end
+    # def default_url_options      
+    #   { locale: I18n.locale }
+    # end
 
     # Для показа времени загрузки страницы (Footnotes gem)
     def set_start_time

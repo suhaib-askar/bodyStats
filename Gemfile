@@ -5,9 +5,11 @@ gem 'rails', '4.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.17.1'
 gem 'remotipart', '~> 1.2.1'
+
 gem 'devise', '~> 3.2.4'
-# gem 'devise-i18n', '~> 0.10.4'
 gem 'cancan', '~> 1.6.10'
+gem 'rails_admin', '~> 0.6.3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -19,7 +21,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'public_activity', '~> 1.4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 3.1.1'
-gem 'jquery-ui-rails', '~> 5.0.0'
+gem 'jquery-ui-rails'
 gem 'jquery-textchange-rails'
 gem 'jquery-cookie-rails', '~> 1.3.1.1'
 # gem 'rack-pjax', '~> 0.7.0'
@@ -73,6 +75,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'frontend_notifier'
 gem 'simple_form', '~> 3.0.2'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'

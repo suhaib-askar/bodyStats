@@ -22,10 +22,4 @@
 //= require masonry.dpkg
 //= require jquery.hoverOver.min
 
-//= require jquery-ui/core
-//= require jquery-ui/widget
-//= require jquery-ui/mouse
-//= require jquery-ui/position
-//= require jquery-ui/draggable
-//= require jquery-ui/resizable
-//= require jquery-ui/dialog
+//= require lib/_frontend_notifier

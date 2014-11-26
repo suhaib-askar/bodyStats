@@ -10,8 +10,7 @@
     = include_gon
     = render :partial => "shared/frontend_notifier"
     = my render('layouts/header')
-    /= print_errors
-    = yield      
+    = yield
     = my render('layouts/footer')
     / нужно что бы скрипт был подключен в конце документа
-    = javascript_include_tag 'tuktuk/tuktuk', 'data-turbolinks-track' => true 
+    = javascript_include_tag 'tuktuk/tuktuk', 'data-turbolinks-track' => true

@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.2'
   gem 'rspec-its', '~> 1.0.1'
   gem 'guard-rspec', '~> 4.2.10'
+  gem 'guard-livereload', '~> 2.3.0'
   gem 'spring-commands-rspec', '~> 1.0.2'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'capybara', '~> 2.4.1'

@@ -1,7 +1,9 @@
 .margin-content-2
   .track-container
     .boxed-group.track-group
-      %h3 Create your track items
+      %h3
+        Create your track items
+        = link_to 'Go to project', project_path(@project), class: " btn button primary"
       .boxed-group-inner
         /= simple_form_for([@project, @project.items.build]) do |f|
         / Не подходит потому что это создает пустой трек итем еще не сохраненный
@@ -13,7 +15,7 @@
           %dl.form.track
             %dd= f.association :unit, label_method: unit_meth, prompt: false, value_method: :id, label: false, input_html: { class: "form-control track-combo" }
           %dl.track
-            = f.button :submit, "Add", class: "button primary track-button"
+            = f.button :submit, "Add", class: "button track-button"
     .boxed-group
       %h3 Your items
       .boxed-group-inner
@@ -28,5 +30,5 @@
                     %dl.form.track
                       %dd= f.association :unit, label_method: unit_meth, prompt: false, value_method: :id, label: false, input_html: { class: "form-control track-item-combo" }
                 = button_to 'X', [@project, item], method: :delete, :name => 'delete', data: { confirm: 'Вы уверены?' }, class: "track-item-delete button danger"
-        - else 
+        - else
           %h2{ style: "text-align: center; padding-bottom: 20px;" } Tracking list is empty

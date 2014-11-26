@@ -1,19 +1,17 @@
 Rails.application.routes.draw do
-  
+
   get '(errors)/:status' => 'errors#show', constraints: { status: /\d{3}/ }, via: :all
-  
+
   devise_for :users, skip: [:sessions, :passwords, :registrations]
-  
+
   #scope '(:locale)' do
-  
+
   #scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
     root 'static_pages#home'
 
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-    
     #get '/:project_name' => 'projects#show', constraints: { id: /\d.+/ }, as: 'proj_id'
-    
-    
+
+
     #get '/:id' => 'projects#show', id: /login\/[^\/]+/
     get '/about' => 'static_pages#about', as: 'about'
     as :user do
@@ -34,10 +32,10 @@ Rails.application.routes.draw do
       post  '/reset_password'        => 'users/passwords#create', as: 'user_password'
       get   '/password/change'       => 'devise/passwords#edit',   as: 'edit_user_password'
       put   '/reset_password'        => 'devise/passwords#update', as: ''
-      
+
 
       scope '/settings' do
-        
+
         # confirmation
         # get   '/confirm'        => 'devise/confirmations#show',   as: 'person_confirmation'
         # post  '/confirm'        => 'devise/confirmations#create'

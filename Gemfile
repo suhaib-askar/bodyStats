@@ -8,8 +8,6 @@ gem 'remotipart', '~> 1.2.1'
 
 gem 'devise', '~> 3.2.4'
 gem 'cancan', '~> 1.6.10'
-gem 'rails_admin', '~> 0.6.3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -47,7 +45,7 @@ gem 'babosa', '~> 0.3.11'
 gem 'lazy_high_charts', '~> 1.5.4'
 #gem 'chartkick', '~> 1.3.2'
 #gem 'groupdate', '~> 2.2.1'
-gem 'carrierwave', '~> 0.10.0' 
+gem 'carrierwave', '~> 0.10.0'
 gem 'rmagick', '~> 2.13.3'
 
 gem 'gon', '~> 5.1.2'
